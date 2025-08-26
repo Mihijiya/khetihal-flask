@@ -1,0 +1,196 @@
+/* Settings Page Styles - settings.css */
+
+.settings-page-content {
+    padding: 40px 20px;
+    background-color: var(--background-color);
+}
+
+.settings-page-content h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 40px; /* Space below the heading */
+    font-size: 2.8em;
+}
+
+.settings-section {
+    max-width: 1200px; /* Limit the overall width of the section */
+    margin-left: auto; /* Center the section itself */
+    margin-right: auto; /* Center the section itself */
+    display: flex; /* Use flex to manage rows */
+    flex-direction: column; /* Stack rows vertically */
+    gap: 30px; /* Space between rows (top-row and full-width card) */
+    align-items: center; /* Center items (rows) horizontally */
+}
+
+.settings-cards-top-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: center; /* Center cards within this row */
+    gap: 30px; /* Space between the two cards */
+    width: 100%; /* Take full width of its parent (.settings-section) */
+}
+
+.settings-card {
+    background-color: var(--form-background-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    
+    /* Increased width for individual cards in the top row */
+    flex: 1 1 calc(50% - 15px); /* Two cards per row, accounting for gap */
+    min-width: 300px; /* Minimum width for a card before it wraps */
+    max-width: 550px; /* INCREASED MAX WIDTH for individual cards */
+    margin: 0; /* Remove default margins, flex gap handles spacing */
+
+    text-align: left; /* Align content within the card to the left */
+}
+
+/* Specific styling for the full-width card */
+.settings-card-full-width {
+    width: 100%; /* Make this card take the full width of its parent (.settings-section) */
+    max-width: 1130px; /* INCREASED MAX WIDTH to match combined width of two top cards + gap */
+    margin: 0 auto; /* Ensure it's centered if its parent isn't a flex container or if it's narrower than parent */
+}
+
+
+.settings-card h2 {
+    color: var(--dark-text-color);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    text-align: center; /* Keep card titles centered */
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.settings-card .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.settings-card label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark-text-color);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.settings-card input[type="text"],
+.settings-card input[type="email"],
+.settings-card input[type="password"],
+.settings-card input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.settings-card input[type="text"]:focus,
+.settings-card input[type="email"]:focus,
+.settings-card input[type="password"]:focus,
+.settings-card input[type="tel"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+    outline: none;
+}
+
+.settings-card .btn-primary {
+    background-color: var(--logo-orange-button-color); 
+    color: var(--button-text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Make button a block element */
+    margin: 25px auto 0 auto; /* Center the button within the card */
+    width: auto;
+    min-width: 180px;
+}
+
+.settings-card .btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) { /* New breakpoint for slightly smaller desktops/large tablets */
+    .settings-cards-top-row {
+        gap: 20px;
+    }
+    .settings-card {
+        flex: 1 1 calc(50% - 10px); /* Adjust flex-basis for smaller gap */
+        max-width: 500px; /* Slightly reduce max-width for smaller screens */
+    }
+    .settings-card-full-width {
+        max-width: 1020px; /* Adjust max-width for full-width card */
+    }
+}
+
+@media (max-width: 992px) { /* Tablets */
+    .settings-cards-top-row {
+        gap: 20px; /* Slightly smaller gap on tablets */
+    }
+    .settings-card {
+        flex: 1 1 calc(50% - 10px); /* Two cards per row */
+        max-width: unset; /* Remove max-width constraint to allow 50% width */
+    }
+    .settings-card-full-width {
+        max-width: 95%; /* Adjust max-width for full-width card on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-page-content h1 {
+        font-size: 2.2em;
+    }
+
+    .settings-cards-top-row {
+        flex-direction: column; /* Stack top two cards vertically */
+        align-items: center; /* Center stacked cards */
+        gap: 30px; /* Space between stacked cards */
+    }
+
+    .settings-card {
+        padding: 20px;
+        flex: 1 1 100%; /* Make cards take full width when stacked */
+        max-width: 500px; /* Re-introduce a max-width for stacked cards */
+        margin-left: auto; /* Center stacked cards */
+        margin-right: auto; /* Center stacked cards */
+    }
+
+    .settings-card h2 {
+        font-size: 1.5em;
+    }
+
+    .settings-card-full-width {
+        width: 100%; /* Ensure it's still full width */
+        max-width: 500px; /* Match max-width of other stacked cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-page-content h1 {
+        font-size: 1.8em;
+    }
+
+    .settings-card {
+        padding: 15px;
+    }
+
+    .settings-card .btn-primary {
+        min-width: 100%;
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .settings-card-full-width {
+        max-width: 95%; /* Slightly less than 100% to ensure padding */
+    }
+}

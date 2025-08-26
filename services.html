@@ -1,0 +1,136 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Khetihal - Our Services</title>
+        <link rel="stylesheet" href="/static_assets/css/global.css">
+<link rel="stylesheet" href="/static_assets/css/header_footer.css">
+<link rel="stylesheet" href="/static_assets/css/services.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body>
+        <!-- Header copied from index.html with profile dropdown logic -->
+                   <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                    </a>
+                </div>
+                <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                    <nav class="navbar">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="products.html">Our Products</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                        {% if is_logged_in %}
+                            <div class="profile-dropdown">
+                                <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                    My Profile <i class="bi bi-caret-down-fill"></i>
+                                </button>
+                                <div class="profile-dropdown-content" id="profileDropdownContent">
+                                     <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                               
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        {% else %}
+                           <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                    <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="page-hero services-hero">
+                <div class="container">
+                    <h1>Our Comprehensive Services</h1>
+                    <p>Empowering your farm with expert guidance, innovative solutions, and dedicated support.</p>
+                </div>
+            </section>
+
+            <section class="content-section services-overview-section">
+                <div class="container">
+                    <h2>Solutions Tailored for Your Success</h2>
+                    <p class="section-description">At AgroFarm Solutions, we offer a range of professional services designed to optimize your agricultural practices, improve yields, and ensure long-term sustainability. Whether you're a small-scale farmer or a large agricultural enterprise, we have the expertise to help you thrive.</p>
+
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-analytics"></i> </div>
+                            <h3>Farm Management & Consultancy</h3>
+                            <p>Expert advice on crop rotation, soil health, pest management, and overall farm efficiency.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-water"></i> </div>
+                            <h3>Irrigation System Design & Install</h3>
+                            <p>Customized, water-efficient irrigation solutions, from drip systems to smart automation.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-drone"></i> </div>
+                            <h3>Precision Agriculture Services</h3>
+                            <p>Utilizing drones and data analytics for precise planting, fertilizing, and monitoring.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-plant"></i> </div>
+                            <h3>Soil Testing & Nutrient Management</h3>
+                            <p>Detailed soil analysis and personalized nutrient plans for optimal crop growth.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-tractor"></i> </div>
+                            <h3>Machinery & Equipment Rental</h3>
+                            <p>Access to modern, well-maintained farm machinery and implements on flexible terms.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">
+                                <i class="icon-education"></i> </div>
+                            <h3>Farmer Training & Workshops</h3>
+                            <p>Hands-on training and educational workshops on modern farming techniques and sustainability.</p>
+                            <a href="#" class="btn btn-primary btn-small">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="call-to-action">
+                <div class="container">
+                    <h2>Ready to Enhance Your Farm's Potential?</h2>
+                    <p>Contact us today to discuss how our services can benefit your agricultural enterprise.</p>
+                    <a href="contact.html" class="btn btn-secondary">Request a Consultation</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Khetihal. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script src="/static_assets/script.js"></script>
+    </body>
+    </html>
+    

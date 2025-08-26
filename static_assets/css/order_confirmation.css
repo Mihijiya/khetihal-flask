@@ -1,0 +1,298 @@
+/* order_confirmation.css */
+
+/* Main section for the confirmation page */
+.order-confirmation-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header for the confirmation (icon, title, thank you message) */
+.confirmation-header {
+    margin-bottom: 30px;
+}
+
+/* Container for the dynamic icon (spinner or checkmark) */
+.confirmation-icon-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Small Loading Spinner for the confirmation page */
+.loading-spinner-small {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid var(--primary-color); /* Primary color spinner */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Checkmark (initially hidden, shown by JS) */
+.success-checkmark {
+    font-size: 4em; /* Match original icon size */
+    color: var(--success-color); /* Green checkmark */
+    opacity: 0; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5); /* Start small */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.success-checkmark.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Grow to full size */
+}
+
+
+.confirmation-header h1 {
+    color: var(--primary-color);
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.confirmation-header p {
+    color: var(--dark-text-color);
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* Container for the detail cards */
+.order-details-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* General card styling */
+.card {
+    background-color: #f9f9f9; /* Light background for cards */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Subtle inner shadow */
+    text-align: left; /* Align text left within cards */
+}
+
+.card h3 {
+    color: var(--dark-primary-color);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    text-align: center; /* Center card titles */
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.card p strong {
+    color: var(--dark-text-color);
+}
+
+/* Specific styling for order status badge */
+.order-status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: white;
+    background-color: #6c757d; /* Default grey for unknown/pending */
+    text-transform: capitalize;
+}
+
+/* Status specific colors (example) */
+.order-status-badge.pending { background-color: #ffc107; color: #333; } /* Yellow for pending */
+.order-status-badge.processing { background-color: #17a2b8; } /* Info blue */
+.order-status-badge.shipped { background-color: #007bff; } /* Primary blue */
+.order-status-badge.delivered { background-color: var(--success-color); } /* Green for delivered */
+.order-status-badge.cancelled { background-color: #dc3545; } /* Red for cancelled */
+
+
+/* Items Purchased List */
+.order-items-list {
+    margin-top: 15px;
+    max-height: 300px; /* Make it scrollable if many items */
+    overflow-y: auto;
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+.order-items-list .order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.order-items-list .order-item:last-child {
+    border-bottom: none;
+}
+
+.order-items-list .order-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.order-items-list .order-item-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.order-items-list .order-item-details h4 {
+    font-size: 1em;
+    color: var(--dark-text-color);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.order-items-list .order-item-details p {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 0;
+}
+
+.order-items-list .order-item-price-total {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1em;
+    flex-shrink: 0; /* Prevent price from shrinking */
+    margin-left: 15px;
+}
+
+/* Action buttons at the bottom */
+.confirmation-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.confirmation-actions .btn {
+    min-width: 180px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--logo-orange-button-color);
+    color: var(--button-text-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure btn-primary remains fixed orange and no transform on hover/active/focus */
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: var(--logo-orange-button-color) !important; /* Keep orange on hover/active/focus */
+    color: var(--button-text-color) !important; /* Keep text color same */
+    transform: none !important; /* Remove any transform effect */
+    box-shadow: none !important; /* Remove any box shadow effect */
+    outline: none !important; /* Remove outline on focus */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .order-confirmation-section {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .confirmation-header h1 {
+        font-size: 2.5em;
+    }
+
+    .confirmation-icon { /* Adjust for the new container */
+        font-size: 3.5em;
+    }
+
+    .order-details-summary {
+        grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+    }
+
+    .confirmation-actions {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px;
+    }
+
+    .confirmation-actions .btn {
+        width: 100%; /* Full width buttons */
+        max-width: 300px; /* Limit max width for stacked buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    .order-confirmation-section {
+        padding: 15px;
+    }
+
+    .confirmation-header h1 {
+        font-size: 2em;
+    }
+
+    .confirmation-icon { /* Adjust for the new container */
+        font-size: 3em;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card h3 {
+        font-size: 1.4em;
+    }
+
+    .order-items-list .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .order-items-list .order-item-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .order-items-list .order-item-price-total {
+        margin-left: 0;
+        margin-top: 5px;
+        align-self: flex-end; /* Push price to the right */
+    }
+}

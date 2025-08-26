@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhetiHal - Our Products</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/products.css"> <!-- Your custom products.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Products Page Specific Styles */
+        .products-page-content {
+            max-width: 1200px;
+            margin: 80px auto 40px auto; /* Adjust margin-top for fixed header */
+            padding: 30px;
+            background-color: var(--form-background-color);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        .products-page-content h2 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-light-grey);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes button to bottom */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-light-grey);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1; /* Allows info section to expand */
+        }
+
+        .product-info h3 {
+            font-size: 1.6rem;
+            color: var(--dark-primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            font-size: 0.95rem;
+            color: var(--dark-text-for-light-bg);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-stock {
+            font-size: 0.9rem;
+            color: var(--dark-text-for-light-bg);
+            margin-bottom: 15px;
+        }
+
+        /* Styling for the Add to Cart button */
+        .product-card .btn-add-to-cart {
+            display: block;
+            width: 100%; /* Make it full width of its parent (.product-info) */
+            margin: 20px 0 20px 0; /* Add top and bottom margin */
+            padding: 12px 20px;
+            background-color: var(--logo-orange-button-color); /* Use your orange color variable */
+            color: var(--button-text-color); /* Usually white or dark text for the button */
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            font-weight: 600; /* Make text bolder */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+
+        .product-card .btn-add-to-cart:hover {
+            background-color: var(--logo-orange-button-color-hover); /* Darker orange on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+        }
+
+        /* Styles for Quantity Controls */
+        .quantity-controls-product-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0px; /* Removed gap to make buttons touch the edges */
+            margin: 20px 0 20px 0; /* Match margin of add to cart button */
+            width: 100%;
+            background-color: var(--light-grey-background); /* Light background for controls */
+            border-radius: 8px;
+            padding: 0; /* Removed vertical padding */
+            height: 40px; /* Explicit height for the entire control bar */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden; /* Ensures content stays within the rounded corners */
+        }
+
+        .quantity-btn-product-card {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            /* Individual border-radius will be applied below for flush corners */
+            width: 40px; /* Make width equal to container height for square buttons */
+            height: 100%; /* Make buttons fill the height of the parent */
+            font-size: 1.2em;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0; /* Prevent buttons from shrinking */
+        }
+
+        .quantity-btn-product-card:hover {
+            background-color: var(--dark-primary-color);
+        }
+
+        /* Specific border-radius for left and right buttons to make them flush with container */
+        .quantity-controls-product-card .decrease-quantity-product-card {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .quantity-controls-product-card .increase-quantity-product-card {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .product-quantity-display {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--dark-text-color);
+            min-width: 30px; /* Ensure space for number */
+            text-align: center;
+            flex-grow: 1; /* Allows the number display to take available space */
+            line-height: 40px; /* Vertically center the number, matching container height */
+        }
+
+
+        .message-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 60%;
+            max-width: 500px;
+            padding: 12px 15px;
+            border: 1px solid var(--border-light-grey);
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar input[type="text"]:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-bar button {
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--dark-primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-bar input[type="text"] {
+                width: 90%;
+            }
+            .search-bar button {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                                <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                                {% if g.user and g.user.is_admin == 1 %}
+                                <a href="/admin/dashboard.html">Admin Dashboard</a>
+                                <a href="/admin/sheets/products.html">Manage Products (Sheets)</a>
+                                <a href="/admin/sheets/orders.html">Manage Orders (Sheets)</a>
+                                {% endif %}
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section specific to Products Page -->
+        <section class="products-hero">
+            <div class="container hero-content">
+                <h1>Our Sustainable Products</h1>
+                <p>From our farm to your table: fresh, organic, and responsibly sourced.</p>
+            </div>
+        </section>
+
+        <!-- Product Listing Section -->
+        <section class="product-listing-section">
+            <div class="container">
+                <h2>Explore Our Range</h2>
+                <div id="productMessages" class="message" style="display:none;"></div> <!-- Message display area for products -->
+                
+                <div class="search-bar">
+                    <input type="text" id="productSearchInput" placeholder="Search products...">
+                    <button id="productSearchBtn">Search</button>
+                </div>
+
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be loaded here dynamically by JavaScript -->
+                    <p>Loading products...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section (consistent with homepage) -->
+        <section class="call-to-action">
+            <div class="container">
+                <h2>Ready to Start Your Sustainable Journey?</h2>
+                <p>Explore our full range of products and services today!</p>
+                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 KhetiHal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay HTML -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-overlay-content"></div>
+        <p id="loadingMessage" class="loading-message"></p>
+    </div>
+
+    <!-- Load script.js - all product-specific JS is now inside it -->
+    <script src="/static_assets/script.js?v=1.0.1"></script> 
+</body>
+</html>

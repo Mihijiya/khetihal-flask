@@ -1,0 +1,150 @@
+/* Authentication (Login/Register) Page Styles - auth.css */
+
+.login-page { /* Applies to both login.html and register.html main */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+    padding: 40px 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), /* Semi-transparent white overlay */
+                url('/static_assets/image/1.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+.login-container { /* Applies to the form wrapper on both pages */
+    background-color: var(--form-background-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(12, 6, 6, 0.15);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid var(--border-light-grey); /* Subtle border */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+.login-container::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--logo-orange-button-color); /* Using orange for accent */
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.login-container h2 {
+    margin-bottom: 35px;
+    color: var(--primary-color);
+    font-size: 2.2em;
+    position: relative;
+    z-index: 1;
+}
+
+/* Specific input overrides for login/register forms to ensure fixed black border */
+/* This is highly specific to override any general input resets */
+.login-container .form-group input[type="text"],
+.login-container .form-group input[type="email"],
+.login-container .form-group input[type="password"] {
+    border: 1px solid var(--input-border-color) !important; /* Force black border */
+    background-color: var(--form-background-color) !important; /* Force white background */
+    transition: none !important; /* No transitions */
+    box-shadow: none !important; /* No box shadow */
+    outline: none !important; /* No outline */
+    transform: none !important; /* No transform */
+}
+
+.login-container .form-group input[type="text"]:focus,
+.login-container .form-group input[type="email"]:focus,
+.login-container .form-group input[type="password"]:focus,
+.login-container .form-group input[type="text"]:hover,
+.login-container .form-group input[type="email"]:hover,
+.login-container .form-group input[type="password"]:hover {
+    border-color: var(--input-border-color) !important; /* Stays black */
+    background-color: var(--form-background-color) !important; /* Stays white */
+    box-shadow: none !important;
+    outline: none !important;
+    transform: none !important;
+}
+
+.login-container .btn-primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-top: 25px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+.forgot-password-link, .signup-link {
+    margin-top: 25px;
+    font-size: 1em;
+    position: relative;
+    z-index: 1;
+}
+
+.forgot-password-link a, .signup-link a {
+    color: var(--dark-text-color); /* Black text */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password-link a:hover, .signup-link a:hover {
+    color: var(--primary-color); /* Green on hover */
+    text-decoration: none;
+}
+
+/* Responsive Adjustments for Login/Register Pages */
+@media (max-width: 768px) {
+    .login-page {
+        padding: 20px 0;
+    }
+
+    .login-container {
+        margin: 0 20px;
+        padding: 30px;
+    }
+
+    .login-container h2 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .login-container .btn-primary {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .login-container::before,
+    .login-container::after {
+        display: none;
+    }
+}

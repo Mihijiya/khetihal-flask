@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - About Us</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/about.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Header copied from index.html with profile dropdown logic -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <!-- REMOVED inline style: height controlled by CSS now -->
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                                <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                                
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section for About Us page, consistent with homepage styling -->
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>About Khetihal</h1>
+                <p>Our mission, vision, and the team behind our success.</p>
+            </div>
+        </section>
+
+        <!-- Story Section (similar to Features section on homepage - white background) -->
+        <section class="story-section">
+            <div class="container">
+                <h2>Our Story</h2>
+                <div class="story-content">
+                    <div class="story-text">
+                        <p>Khetihal was founded in 2024 with a vision to revolutionize the agricultural sector through sustainable practices and cutting-edge technology. We believe in empowering farmers with the knowledge and tools they need to thrive in a changing world.</p>
+                        <p>From humble beginnings, we have grown into a leading provider of agro-based solutions, partnering with local communities and experts to ensure food security and environmental stewardship.</p>
+                    </div>
+                    <!--div class="story-image">
+                        <img src="https://placehold.co/500x300/4CAF50/FFFFFF?text=Our+Story" alt="Our Story Image">
+                    </div-->
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Vision Section (consistent with primary color background) -->
+        <section class="mission-vision-section">
+            <div class="container">
+                
+                <div class="mission-vision-grid">
+                    <div class="mv-item">
+                        <h3>Our Mission</h3>
+                        <p>To empower farmers with innovative, sustainable, and profitable agricultural solutions that enhance food security and environmental health.</p>
+                    </div>
+                    <div class="mv-item">
+                        <h3>Our Vision</h3>
+                        <p>To be the leading partner for agricultural transformation, fostering a global community of thriving, eco-conscious farmers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section (similar to Features section on homepage - white background) 
+        <section class="values-section">
+            <div class="container">
+                <h2>Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h3><i class="bi bi-leaf-fill"></i> Sustainability</h3>
+                        <p>Committed to eco-friendly practices that preserve our planet for future generations.</p>
+                    </div>
+                    <div class="value-item">
+                        <h3><i class="bi bi-hand-thumbs-up-fill"></i> Quality</h3>
+                        <p>Delivering exceptional products and services that exceed expectations.</p>
+                    </div>
+                    <div class="value-item">
+                        <h3><i class="bi bi-people-fill"></i> Community</h3>
+                        <p>Fostering strong relationships and supporting local agricultural communities.</p>
+                    </div>
+                    <div class="value-item">
+                        <h3><i class="bi bi-lightbulb-fill"></i> Innovation</h3>
+                        <p>Embracing new technologies and methods to drive progress in farming.</p>
+                    </div>
+                </div>
+            </div>
+        </section-->
+
+        <!-- Team Section (similar to Features section on homepage - white background) -->
+        <section class="team-section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <p class="section-description">Our dedicated team of experts is passionate about agriculture and committed to your success.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://placehold.co/150x150/4CAF50/FFFFFF?text=Manish" alt="Manish Anand">
+                        <h3>Manish Anand</h3>
+                        <p>CEO & Founder</p>
+                        <span>Visionary leader driving sustainable change.</span>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/150x150/4CAF50/FFFFFF?text=John" alt="John Smith">
+                        <h3>John Smith</h3>
+                        <p>Head Agronomist</p>
+                        <span>Expert in soil science and crop optimization.</span>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/150x150/4CAF50/FFFFFF?text=Priya" alt="Priya Sharma">
+                        <h3>Priya Sharma</h3>
+                        <p>Operations Manager</p>
+                        <span>Ensuring smooth logistics and client satisfaction.</span>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/150x150/4CAF50/FFFFFF?text=David" alt="David Lee">
+                        <h3>David Lee</h3>
+                        <p>Technology Lead</p>
+                        <span>Innovating precision farming solutions.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section (consistent with homepage) -->
+        <section class="call-to-action">
+            <div class="container">
+                <h2>Ready to Partner with Khetihal?</h2>
+                <p>Let's cultivate success together. Contact us for a consultation.</p>
+                <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Order Confirmed!</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/order_confirmation.css"> <!-- Link to the new CSS file -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- The global loading overlay will now handle the spinner and the final icon -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-overlay-content">
+            <div class="loading-spinner"></div>
+            <p id="loadingMessage">Loading order details...</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                                <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="login.html" class="btn btn-login" id="login-button">Login</a>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="order-confirmation-section">
+            <div class="container">
+                <div id="confirmationMessages" class="form-messages" style="display:none;"></div>
+
+                <div class="confirmation-header">
+                    <!-- The icon will now be managed by the global loading overlay -->
+                    <h1>Order Confirmed!</h1>
+                    <p>Thank you for your purchase. Your order has been successfully placed.</p>
+                </div>
+
+                <div class="order-details-summary">
+                    <div class="card order-details-card">
+                        <h3>Order Details</h3>
+                        <p><strong>Order ID:</strong> <span id="orderIdDisplay">#N/A</span></p>
+                        <p><strong>Order Date:</strong> <span id="orderDateDisplay">N/A</span></p>
+                        <p><strong>Total Amount:</strong> <span id="orderTotalDisplay">₹0.00</span></p>
+                        <p><strong>Payment Method:</strong> <span id="paymentMethodDisplay">N/A</span></p>
+                        <p><strong>Status:</strong> <span id="orderStatusDisplay" class="order-status-badge">N/A</span></p>
+                    </div>
+
+                    <div class="card shipping-address-card">
+                        <h3>Shipping Address</h3>
+                        <div id="shippingAddressDisplay">
+                            <!-- Shipping address will be dynamically loaded here by JavaScript -->
+                            <p>Loading address...</p>
+                        </div>
+                    </div>
+
+                    <div class="card items-purchased-card">
+                        <h3>Items Purchased</h3>
+                        <div id="orderItemsDisplay" class="order-items-list">
+                            <!-- Order items will be dynamically loaded here by JavaScript -->
+                            <p>Loading items...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+                    <a href="order_history.html" class="btn btn-primary">View Order History</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

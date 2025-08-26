@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Order History</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/order_history.css"> <!-- New CSS for order history -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Header copied from other pages for consistency -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                               <a href="order_history.html">My Orders</a>
+                               
+                                <a href="profile.html">Manage Profile</a> <!-- Keep if you have a separate profile page -->
+                                
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="login.html" class="btn btn-login" id="login-button">Login</a>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container order-history-page-content">
+        <section class="order-history-section">
+            <h1>Your Order History</h1>
+            <div id="orderHistoryMessages" class="message" style="display:none;"></div>
+            <div id="ordersContainer" class="orders-container">
+                <!-- Order history will be loaded here by JavaScript -->
+                <p id="noOrdersMessage" style="display:none; text-align: center; margin-top: 30px; font-size: 1.1em; color: var(--dark-text-for-light-bg);">You haven't placed any orders yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

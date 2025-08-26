@@ -1,0 +1,219 @@
+/* Header and Footer Styles - header_footer.css */
+
+header {
+    background-color: #fff;
+    padding: 5px 0; /* Smaller header padding */
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; /* Control logo height via CSS now */
+    width: auto;
+    display: block;
+}
+
+.navbar-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 25px;
+}
+
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+.navbar ul li a {
+    color: var(--dark-text-color);
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown-btn {
+    /* Apply button styles similar to .btn */
+    background-color: var(--logo-orange-button-color); /* Orange background */
+    color: var(--button-text-color); /* Dark text */
+    padding: 10px 15px; /* Adjust padding to match login button */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Match font size */
+    font-weight: 600; /* Match font weight */
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 10px rgba(251, 176, 64, 0.3); /* Add shadow like .btn-primary */
+    transition: none !important; /* No transitions */
+}
+
+.profile-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    overflow: hidden;
+    top: calc(100% + 10px);
+    right: 0;
+    padding: 5px 0;
+}
+
+.profile-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.profile-dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.profile-dropdown-content.show {
+    display: block;
+}
+
+.profile-dropdown-btn .bi-caret-down-fill {
+    font-size: 0.8em;
+}
+
+.header-content .navbar-group > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Cart Icon */
+.cart-icon {
+    position: relative;
+    color: #000000 !important; /* Force black */
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: none !important;
+}
+
+.cart-icon:hover {
+    color: #000000 !important; /* Stays black on hover */
+}
+
+.cart-icon #cartItemCount {
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    border-radius: 50%;
+    line-height: 1;
+    border: 1px solid white;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    transform: translate(0%, 0%);
+    z-index: 10;
+}
+
+footer {
+    background-color: var(--dark-primary-color);
+    color: var(--white-text-color);
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Adjustments for Header/Footer */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .navbar-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 0;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    .navbar ul li:last-child {
+        margin-right: 0;
+    }
+
+    .btn-login {
+        width: 100%;
+        text-align: left;
+    }
+}

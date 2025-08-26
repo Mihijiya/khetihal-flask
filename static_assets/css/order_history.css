@@ -1,0 +1,195 @@
+/* Order History Page Styles - order_history.css */
+
+.order-history-page-content {
+    padding: 40px 20px;
+    background-color: var(--background-color);
+}
+
+.order-history-section h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    font-size: 2.8em;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between individual order cards */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.order-card {
+    background-color: var(--form-background-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.order-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--dark-text-color);
+}
+
+.order-header .order-status {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.order-status.Pending { background-color: #fff3cd; color: #856404; border: 1px solid #856404; }
+.order-status.Processing { background-color: #d1ecf1; color: #0c5460; border: 1px solid #0c5460; }
+.order-status.Shipped { background-color: #d4edda; color: #155724; border: 1px solid #155724; }
+.order-status.Delivered { background-color: #cce5ff; color: #004085; border: 1px solid #004085; }
+.order-status.Cancelled { background-color: #f8d7da; color: #721c24; border: 1px solid #721c24; }
+
+
+.order-details {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: var(--dark-text-for-light-bg);
+}
+
+.order-details div {
+    flex: 1 1 calc(50% - 15px); /* Two columns on larger screens */
+    min-width: 250px; /* Minimum width before wrapping */
+}
+
+.order-details strong {
+    color: var(--dark-text-color);
+}
+
+.order-items-list {
+    border-top: 1px dashed var(--border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #eee;
+}
+
+.order-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.order-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.order-item-details {
+    flex-grow: 1;
+}
+
+.order-item-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    color: var(--dark-text-color);
+}
+
+.order-item-details p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--dark-text-for-light-bg);
+}
+
+.order-item-price-total {
+    font-weight: 600;
+    color: var(--dark-text-color);
+    font-size: 1em;
+    white-space: nowrap; /* Prevent price from wrapping */
+}
+
+.order-footer {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--dark-text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .order-history-section h1 {
+        font-size: 2.2em;
+    }
+
+    .order-card {
+        padding: 20px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .order-header h3 {
+        font-size: 1.3em;
+    }
+
+    .order-details div {
+        flex: 1 1 100%; /* Stack details on smaller screens */
+        min-width: unset;
+    }
+
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .order-item-image {
+        margin-bottom: 10px;
+    }
+
+    .order-item-price-total {
+        width: 100%;
+        text-align: right;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-history-section h1 {
+        font-size: 1.8em;
+    }
+
+    .order-card {
+        padding: 15px;
+    }
+}

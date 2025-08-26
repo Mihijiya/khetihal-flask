@@ -1,0 +1,394 @@
+/* Payment Page Styles - payment.css */
+
+/* Overall container for the payment page content */
+.payment-page-content {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+}
+
+/* Page title for the payment */
+.payment-page-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Wrapper for payment form and order summary card */
+.payment-section-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Styles for the payment form card */
+.payment-form-card {
+    flex: 2;
+    min-width: 300px;
+    background-color: #f9f9f9; /* Light background for the form card */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05); /* Inner shadow */
+}
+
+.payment-form-card h3 {
+    color: black; /* Heading is black as requested previously */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+/* Payment Method Selection (Radio Buttons) */
+.payment-method-selection {
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden; /* To contain borders of options */
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 1.1em;
+    color: var(--dark-text-color);
+}
+
+.payment-option:last-child {
+    border-bottom: none;
+}
+
+.payment-option:hover {
+    background-color: #f0f0f0;
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 15px;
+    transform: scale(1.2); /* Make radio buttons a bit larger */
+    accent-color: black; /* Selection dot is black as requested previously */
+}
+
+.payment-option i {
+    margin-right: 10px;
+    color: black; /* Icons are black as requested previously */
+    font-size: 1.3em;
+}
+
+/* Payment Method Content (Hidden by default, shown by JS) */
+.payment-method-content {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.payment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.payment-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+.payment-form input[type="text"],
+.payment-form input[type="email"],
+.payment-form input[type="password"] {
+    width: calc(100% - 20px); /* Adjust for padding */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.payment-form input[type="text"]:focus,
+.payment-form input[type="email"]:focus,
+.payment-form input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.payment-form .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.payment-form .form-row .form-group {
+    flex: 1;
+    margin-bottom: 0; /* Remove bottom margin as gap handles spacing */
+}
+
+/* UPI Specific Styles - UPDATED for greyish background */
+.upi-qr-code {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Changed to greyish, same as payment-form-card */
+    border-radius: 8px;
+    border: 1px solid #e0e0e0; /* Lighter border, similar to payment-method-selection */
+    color: var(--dark-text-color); /* Dark text for contrast on light background */
+}
+
+.upi-qr-code img {
+    width: 150px;
+    height: 150px;
+    border: 5px solid white; /* White border around QR */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.upi-qr-code p {
+    font-size: 0.95em;
+    color: var(--dark-text-color); /* Dark text for contrast on light background */
+}
+
+.upi-qr-code .upi-note {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+
+/* COD Specific Styles */
+.cod-info {
+    
+    font-weight: 700;
+    /*margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    /*background-color: #fff3e0; /* Light orange background 
+    border-radius: 8px;
+    border: 1px solid var(--logo-orange-button-color);*/
+    color: var(--dark-text-color);
+}
+
+.cod-info p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.cod-info p:last-child {
+    margin-bottom: 0;
+}
+
+.cod-info i {
+    color: black; /* Info icon is black as requested previously */
+    margin-right: 8px;
+}
+
+/* Order Summary Card (unchanged, for context) */
+.order-summary-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.order-summary-card h3 {
+    color: var(--dark-primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.order-summary-items {
+    max-height: 250px; /* Scrollable area for many items */
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.order-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.order-item-details {
+    flex-grow: 1;
+}
+
+.order-item-details h4 {
+    font-size: 1em;
+    color: var(--dark-text-color);
+    margin-bottom: 5px;
+}
+
+.order-item-quantity-price {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.order-item-total-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.summary-divider {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: var(--dark-text-color);
+}
+
+.summary-value {
+    font-weight: 600;
+}
+
+.total-row {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--logo-orange-button-color); /* Set to orange */
+    color: var(--button-text-color); /* Dark text for orange button */
+}
+
+.btn-primary:hover {
+    background-color: var(--logo-orange-button-color-hover); /* Darker orange on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--success-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success:disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.full-width-btn {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .payment-section-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .payment-form-card,
+    .order-summary-card {
+        width: 100%;
+        max-width: 500px;
+        min-width: unset;
+    }
+
+    .payment-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .payment-form input[type="text"],
+    .payment-form input[type="email"],
+    .payment-form input[type="password"] {
+        width: 100%; /* Full width on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-page-content {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .payment-page-content h2 {
+        font-size: 2em;
+    }
+
+    .payment-form-card,
+    .order-summary-card {
+        padding: 15px;
+    }
+
+    .payment-form-card h3,
+    .order-summary-card h3 {
+        font-size: 1.5em;
+    }
+
+    .payment-option {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+
+    .payment-option i {
+        font-size: 1.1em;
+    }
+}

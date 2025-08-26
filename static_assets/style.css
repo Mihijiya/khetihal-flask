@@ -1,0 +1,2080 @@
+/* General Styling  */
+:root {
+    /* Main brand colors (can remain if used for text/accents) */
+    --primary-color: #4CAF50; /* Green (If used for other non-button elements) */
+    --dark-primary-color: #388E3C; /* Darker Green */
+
+    /* UPDATED DEFINITIVE BUTTON COLOR: Lighter shade of logo orange */
+    --logo-orange-button-color: #FBB040; /* The new, lighter orange/yellow shade */
+
+    /* Common Button Text Color */
+    --button-text-color: #333; /* Dark text for good contrast on the orange/yellow */
+
+    /* Danger Color (if you want the "Remove Item" button to remain red, keep this) */
+    --danger-color: #dc3545; /* Red for specific actions like removing items */
+
+    /* Neutral Grey Color (for cart continue shopping button if it's not orange) */
+    --neutral-grey-button-color: #6c757d;
+
+    /* General Text Colors (for non-button text) */
+    --dark-text-color: #555;
+    --light-text-color: #f4f4f4;
+    --white-text-color: #FFFFFF; /* Pure white */
+    --form-background-color: #ffffff;
+     --border-light-grey: #ddd;
+     --input-border-color: #000000; /* Solid Black */
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main {
+    flex-grow: 1; /* Allows 'main' to take up all available vertical space */
+}
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    margin: 0;
+    /* IMPORTANT: Add padding-top to the body to prevent content from going under the fixed header */
+    /* Adjust this value based on the actual height of your header. */
+    /* A safe estimate based on your header's current padding and logo size is around 80px-100px. */
+    padding-top: 80px; /* Adjust this value as needed to match your header's height */
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Ensures vertical scrolling is enabled for the body content */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons  */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    /* Transition for non-color properties (transform, box-shadow) */
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0s; /* No transition for background-color */
+    cursor: pointer;
+    border: none;
+    box-sizing: border-box;
+    /* Default background and text color for most buttons */
+    background-color: var(--logo-orange-button-color); /* Applied here for all .btn */
+    color: var(--button-text-color); /* Dark text for all new orange/yellow buttons */
+}
+
+
+.btn-primary {
+    /* Background and color already set by .btn */
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 4px 10px rgba(251, 176, 64, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--logo-orange-button-color); /* STRICTLY the SAME ORANGE on hover */
+    color: var(--button-text-color); /* Ensure text color remains consistent */
+    transform: translateY(-2px); /* Subtle lift */
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 6px 15px rgba(251, 176, 64, 0.4);
+}
+
+
+.btn-secondary {
+    /* Background and color already set by .btn */
+    /* Adjust border and shadow rgba for the new lighter #FBB040 */
+    border: 1px solid rgba(251, 176, 64, 0.5);
+    box-shadow: 0 4px 8px rgba(251, 176, 64, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: var(--logo-orange-button-color); /* STRICTLY the SAME ORANGE on hover */
+    color: var(--button-text-color); /* Ensure text color remains consistent */
+    transform: translateY(-1px); /* Subtle lift */
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 6px 12px rgba(251, 176, 64, 0.3);
+}
+
+.btn-login {
+    /* No specific background/color override needed here, inherited from .btn */
+    padding: 10px 20px; /* Adjust padding if different from .btn default */
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 3px 8px rgba(251, 176, 64, 0.2);
+}
+
+.btn-login:hover {
+    background-color: var(--logo-orange-button-color); /* STRICTLY the SAME ORANGE on hover */
+    color: var(--button-text-color); /* Ensure text color remains consistent */
+    transform: translateY(-1px);
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 4px 10px rgba(251, 176, 64, 0.3);
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%; /* Ensure it spans full width */
+    position: fixed; /* Makes the header stick to the top */
+    top: 0; /* Aligns it to the very top */
+    left: 0; /* Aligns it to the very left */
+    z-index: 1000; /* Ensures it stays on top of other content when scrolling */
+}
+
+.header-content {
+    display: flex;
+    /* This makes the logo and the combined nav/login group push to opposite ends */
+    justify-content: space-between;
+    align-items: center; /* Vertically centers items within the header */
+}
+
+.logo a {
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    /* No change needed here, as it's within the flex container */
+}
+
+.navbar-group {
+    display: flex; /* This new div will contain both the main nav and login */
+    align-items: center;
+    gap: 25px; /* Space between the main nav and the login button */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex; /* Horizontal navigation */
+    /* Removed margin-left from here */
+}
+
+.navbar ul li {
+    /* Changed margin-left to margin-right for left-aligned flow */
+    margin-right: 25px;
+}
+
+/* Remove margin from the last item to prevent extra space */
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+
+.navbar ul li a {
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0; /* Aligns underline from left for left-aligned nav */
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+    /* No change needed here, it expands correctly */
+    background: var(--primary-color);
+}
+
+/* --- Basic Responsiveness (for smaller screens) --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; /* Stacks items vertically on small screens */
+        align-items: flex-start; /* Aligns content to the left when stacked */
+    }
+
+    .logo {
+        margin-bottom: 15px; /* Adds space below the logo when stacked */
+    }
+
+    .navbar-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 0; /* Remove top margin when stacked */
+        align-items: flex-start; /* Align items within the group to the left */
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    .navbar ul li:last-child {
+        margin-right: 0;
+    }
+
+    .btn-login {
+        width: 100%;
+        text-align: left;
+    }
+
+    /* ... other responsive styles (keep as is) ... */
+}
+
+/* Hero Section (no changes needed here, keep as is) */
+.hero-section {
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover;
+    /* color: white; <-- This line might be present but not specific enough, the above rules will override */
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay to improve text readability */
+    background-blend-mode: overlay; /* Blends overlay with background image */
+}
+
+.hero-section h1,
+.hero-section p {
+    color: var(--white-text-color); /* Set text color to white */
+    /* Ensure no conflicting text-shadow or other effects that might obscure it */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Optional: Add a subtle shadow for better contrast on varying backgrounds */
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1; /* Ensures text is above any overlays */
+}
+
+.hero-content h1 {
+    font-size: 3.1rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    line-height: 1;
+    /* color: white; <--- This should ideally be updated to use the variable too */
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    /* color: white; <--- This should ideally be updated to use the variable too */
+}
+
+
+/* Features Section (no changes needed here, keep as is) */
+.features-section {
+    padding: 60px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.features-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.feature-item p {
+    color: var(--dark-text-color);
+}
+
+/* Call to Action (no changes needed here, keep as is) */
+.call-to-action {
+    background-color: var(--primary-color); /* Your green background */
+    /* color: white; <--- This was likely the culprit, if present. The specific rules above override it. */
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.call-to-action h2 {
+    color: var(--white-text-color); /* Set heading text color to white */
+    font-size: 2.8rem; /* Retain original size */
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Optional: Add subtle shadow for contrast */
+}
+
+.call-to-action p {
+    color: var(--white-text-color); /* Set paragraph text color to white */
+    font-size: 1.2rem; /* Retain original size */
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: Add subtle shadow for contrast */
+}
+/* Footer (no changes needed here, keep as is) */
+footer {
+    background-color: var(--dark-primary-color);
+    color: var( --light-text-color);
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.9em;
+}
+
+
+/* Inner Page Hero Section (no changes needed here, keep as is) */
+.page-hero {
+    /* Re-using the same hero background image as index.html for consistency */
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    background-blend-mode: overlay; /* Blends the overlay with the image */
+    color: white; /* Default text color for direct children of .page-hero if not more specific */
+    text-align: center; /* Centers block-level text within this section */
+    padding: 100px 20px; /* Provides vertical spacing */
+    min-height: 450px; /* Ensure a decent height for the hero section */
+    display: flex; /* Enable Flexbox for centering content */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    position: relative;
+    overflow: hidden;
+}
+
+
+.page-hero h1,
+.page-hero p {
+    color: var(--white-text-color); /* Explicitly set text color to white */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow for better contrast */
+    z-index: 2; /* Ensure text is above any potential lighter elements */
+}
+
+.page-hero h1 {
+    font-size: 3.5rem; /* Match hero title size from homepage */
+    margin-bottom: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.page-hero p {
+    font-size: 1.3rem; /* Match hero subtitle size from homepage */
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Content Sections (for inner pages) (no changes needed here, keep as is) */
+.content-section {
+    padding: 60px 0;
+    background-color: var(--white);
+}
+
+.content-section h2 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.content-section p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Team Grid (for about page)  */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.team-member {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+}
+
+.team-member h3 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-style: italic;
+    color: var(--light-text-color);
+}
+
+
+/* Login Page Specific Styling  */
+.login-page {
+    /* Existing flex properties */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+    padding: 40px 0;
+
+    /* Enhanced background for login page */
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), /* Semi-transparent white overlay */
+                url('image/1.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* Makes the background fixed while scrolling (if content was longer) */
+}
+
+.login-container {
+    background-color: var(--form-background-color); /* Set to solid white */
+    padding: 40px; /* Internal spacing */
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid var(--border-light-grey); /* Add a border to the main box */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 400px; /* Limit form width */
+    width: 100%; /* Make it responsive */
+    text-align: center; /* Center buttons/links within the form container */
+}
+
+.login-container:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+}
+
+.login-container::before { /* Decorative element for top-left corner */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+.login-container::after { /* Decorative element for bottom-right corner */
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+
+.login-container h2 {
+    color: var(--primary-color); /* Keep it green as per your screenshot */
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Increased bottom margin */
+    text-align: left;
+    position: relative; /* For label animation/effects */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-text-color); /* Dark color for labels */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border-color); /* **Set fixed black border here** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* IMPORTANT: Remove border-color from transition here, as we don't want it to change */
+    transition: box-shadow 0.3s ease; /* Only transition box-shadow on focus */
+    background-color: var(--form-background-color); /* Ensure white background */
+}
+
+/*.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);  Soft green glow on focus 
+    outline: none;
+    background-color: var(--white);  White background on focus 
+}*/
+
+.login-container .btn-primary {
+    width: 100%;
+    padding: 15px; /* Larger button padding */
+    font-size: 1.2em; /* Larger button text */
+    margin-top: 25px; /* Increased top margin */
+    border-radius: 8px; /* More rounded button */
+    letter-spacing: 0.5px; /* Slightly spaced out letters */
+}
+
+.forgot-password, .signup-link {
+    margin-top: 25px; /* Increased top margin */
+    font-size: 1em; /* Slightly larger text */
+    position: relative; /* To be above pseudo-elements */
+    z-index: 1;
+}
+
+.forgot-password a, .signup-link a {
+    color: var(--dark-text-color); /* Change text color to black */
+    text-decoration: none; /* Keep no underline */
+    font-weight: 500;
+}
+
+.forgot-password a:hover, .signup-link a:hover {
+    color: var(--primary-color); /* Change color on hover */
+    text-decoration: none; /* Remove underline, color change is enough */
+}
+
+/* --- Responsive Adjustments for Login Page --- */
+@media (max-width: 768px) {
+    .login-page {
+        padding: 20px 0; /* Reduce vertical padding */
+    }
+
+    .login-container {
+        margin: 0 20px; /* Add horizontal margin on smaller screens */
+        padding: 30px; /* Reduce padding inside container */
+    }
+
+    .login-container h2 {
+        font-size: 1.8em; /* Smaller heading on small screens */
+        margin-bottom: 30px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        padding: 12px; /* Adjust input padding */
+        font-size: 1em;
+    }
+
+    .login-container .btn-primary {
+        padding: 12px; /* Adjust button padding */
+        font-size: 1.1em;
+    }
+
+    .login-container::before,
+    .login-container::after {
+        display: none; /* Hide decorative elements on very small screens for simplicity */
+    }
+}
+
+/* --- Additions for Products Page --- */
+.product-categories-section {
+    padding: 60px 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.product-categories-section .section-description {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--light-text-color);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.category-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.category-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+}
+
+.category-item h3 {
+    color: var(--secondary-color);
+    font-size: 1.6em;
+    padding: 15px 20px 10px;
+}
+
+.category-item p {
+    color: var(--light-text-color);
+    padding: 0 20px 20px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.category-item .btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin: 0 20px 20px;
+    display: inline-block; /* Ensure button padding works */
+}
+
+/* --- Additions for Contact Page --- */
+.contact-details-section {
+    padding: 60px 0;
+    background-color: var(--background-color);
+}
+
+.contact-grid {
+    display: flex; /* Changed from grid to flex for equal height stretch */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 40px;
+    align-items: stretch; /* This makes children (the two boxes) stretch to the same height */
+}
+
+.contact-form-container,
+.contact-info-container {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1; /* Allows both containers to grow and shrink */
+    min-width: 300px; /* Ensures they don't get too small before wrapping */
+}
+
+.contact-form-container h2,
+.contact-info-container h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.contact-info-container h2 {
+    text-align: left; /* Align contact info heading to the left */
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.info-item i { /* For Font Awesome icons */
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-right: 15px;
+    width: 25px; /* Fixed width for icon alignment */
+    text-align: center;
+}
+
+.map-container {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures map corners are rounded */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.map-container iframe {
+    border-radius: 8px; /* Match container border-radius */
+}
+
+.social-links-contact {
+    margin-top: 30px;
+    text-align: center; /* Center social icons */
+}
+
+.social-links-contact h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.social-links-contact a {
+    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-links-contact a:hover {
+    transform: translateY(-5px);
+    text-decoration: none;
+}
+
+.social-links-contact img {
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+/* --- Specific form input adjustments for Contact Page --- */
+.contact-form-container .form-group input[type="text"],
+.contact-form-container .form-group input[type="email"], /* Targeted email input specifically */
+.contact-form-container .form-group input[type="subject"] { /* If subject input exists, target it */
+    width: 100%; /* Make them fill their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid #ddd; /* **IMPORTANT: Ensure this border is present** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Crucial: Includes padding and border in the element's total width/height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus effect */
+    /* If any background color was accidentally removed, ensure it's here. Usually white. */
+    background-color: #fff; /* Ensure inputs have a white background */
+}
+
+.contact-form-container .form-group textarea {
+    width: 100%; /* Make them fill their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid #ddd; /* **IMPORTANT: Ensure this border is present** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Crucial: Includes padding and border in the element's total width/height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus effect */
+    /* If any background color was accidentally removed, ensure it's here. Usually white. */
+    background-color: #fff; /* Ensure inputs have a white background */
+}
+
+.contact-form-container .form-group input:focus,
+.contact-form-container .form-group textarea:focus {
+   border-color: var(--primary-color); /* Green border on focus */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Subtle green glow on focus */
+    outline: none; /* Remove default browser outline */
+}
+
+
+/* --- Responsive Adjustments for new sections --- */
+@media (max-width: 992px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for smaller screens */
+    }
+
+    .contact-grid {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+        align-items: center; /* Center items when stacked */
+    }
+
+    .contact-form-container,
+    .contact-info-container {
+        padding: 30px;
+        width: 100%; /* Take full width when stacked */
+        max-width: 500px; /* Limit max width even when stacked */
+    }
+
+    .contact-info-container h2 {
+        text-align: center; /* Center contact info heading on small screens */
+    }
+
+    .info-item {
+        justify-content: center; /* Center info items */
+    }
+}
+
+@media (max-width: 992px) {
+    .category-item {
+        text-align: center; /* Center content in product items on very small screens */
+    }
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically on smaller screens */
+    }
+
+    .category-item .btn-small {
+        margin: 0 auto 20px auto; /* Center button */
+    }
+}
+
+
+
+
+/* --- Additions for About Us Page --- */
+
+/* Hero Section specific to About Page */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image/1.jpg') no-repeat center center/cover;
+    height: 400px; /* Adjust height as needed */
+}
+
+/* Story Section */
+.story-section {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.story-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.story-text {
+    flex: 1;
+}
+
+.story-text h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: left; /* Align heading to left */
+}
+
+.story-text p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--light-text-color);
+    margin-bottom: 20px;
+}
+
+.story-image {
+    flex: 0 0 45%; /* Take up 45% of space, adjust as needed */
+    max-width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mission & Vision Section */
+.mission-vision-section {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.mission-vision-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--white); /* White heading on green background */
+}
+
+.mission-vision-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.mv-item {
+    flex: 1;
+    max-width: 450px;
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.mv-item:hover {
+    transform: translateY(-5px);
+}
+
+.mv-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--accent-color); /* Highlight with accent color */
+}
+
+.mv-item p {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+/* Values Section */
+.values-section {
+    padding: 60px 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.values-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.value-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.value-item h3 {
+    font-size: 1.6em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-item h3 i { /* Icon styling for values */
+    font-size: 1.2em;
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.value-item p {
+    color: var(--light-text-color);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* Team Section (Refined) */
+.team-section {
+    padding: 60px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.team-section .section-description {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--light-text-color);
+}
+
+/* Existing .team-grid and .team-member can stay as they are,
+    or you can refine them here if you wish for specific styling.
+    The main change is adding the `span` for quotes. */
+.team-member {
+    /* Existing styles */
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+}
+
+.team-member h3 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.team-member p {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin-bottom: 10px;
+}
+
+.team-member span { /* Styling for the quote/description */
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-top: 10px;
+    font-style: normal;
+    background-color: rgba(0,0,0,0.03);
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+
+/* --- Responsive Adjustments for About Us Page --- */
+@media (max-width: 992px) {
+    .story-content {
+        flex-direction: column; /* Stack story content vertically */
+        text-align: center;
+    }
+
+    .story-text h2 {
+        text-align: center; /* Center heading when stacked */
+    }
+
+    .story-image {
+        max-width: 100%; /* Take full width on smaller screens */
+    }
+
+    .mission-vision-grid {
+        flex-direction: column; /* Stack mission/vision vertically */
+        gap: 30px;
+    }
+
+    .mv-item {
+        max-width: 100%; /* Take full width */
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust columns for values */
+    }
+
+    .value-item h3 {
+        flex-direction: column; /* Stack icon and text */
+        align-items: center;
+    }
+
+    .value-item h3 i {
+        margin-right: 0;
+        margin-bottom: 10px; /* Space between icon and text */
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust team grid columns */
+    }
+}
+
+@media (max-width: 576px) {
+    /* Further adjustments for very small screens if needed */
+    .story-text h2,
+    .mission-vision-section h2,
+    .values-section h2,
+    .team-section h2 {
+        font-size: 2em; /* Smaller headings */
+    }
+
+    .story-text p,
+    .mv-item p,
+    .values-section p,
+    .team-section .section-description {
+        font-size: 1em; /* Slightly smaller body text */
+    }
+}
+
+/* --- Additions for Services Page --- */
+
+/* Hero Section specific to Services Page */
+.services-hero {
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover;
+    /* IMPORTANT: Re-apply the dark overlay specifically to this class */
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay (0.6 opacity) */
+    background-blend-mode: overlay; /* Ensures the overlay blends with the image */
+
+    /* Ensure basic flexbox centering is applied to this specific class */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text within the content block */
+
+    padding: 100px 20px; /* Consistent padding */
+    min-height: 500px; /* Ensure a good height */
+    position: relative;
+    overflow: hidden;
+}
+.services-hero h1,
+.services-hero p {
+    color: var(--white-text-color); /* Explicitly set text color to white */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); /* Stronger shadow for maximum contrast */
+    z-index: 2; /* Ensures text is above background elements */
+}
+
+
+/* Services Overview Section */
+.services-overview-section {
+    padding: 60px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.services-overview-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.services-overview-section .section-description {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--dark-text-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-item {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.service-icon i { /* Styling for Font Awesome icons */
+    color: var(--white);
+    font-size: 2.5em;
+}
+
+/* Placeholder icons if Font Awesome is not used */
+.service-icon .icon-analytics::before { content: '📈'; font-size: 2.5em; color: var(--white); }
+.service-icon .icon-water::before { content: '💧'; font-size: 2.5em; color: var(--white); }
+.service-icon .icon-drone::before { content: '🚁'; font-size: 2.5em; color: var(--white); }
+.service-icon .icon-plant::before { content: '🌱'; font-size: 2.5em; color: var(--white); }
+.service-icon .icon-tractor::before { content: '🚜'; font-size: 2.5em; color: var(--white); }
+.service-icon .icon-education::before { content: '📚'; font-size: 2.5em; color: var(--white); }
+
+
+.services-hero h1 {
+    font-size: 3.5rem; /* Maintain large heading size */
+    margin-bottom: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.services-hero p {
+    font-size: 1.3rem; /* Maintain subtitle size */
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+
+.service-item .btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+/* --- Responsive Adjustments for Services Page --- */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .services-overview-section h2 {
+        font-size: 2em; /* Smaller headings on small screens */
+    }
+
+    .service-item h3 {
+        font-size: 1.5em; /* Smaller service item headings */
+    }
+}
+
+
+/* --- Login Page Specific Styling (Modified & Enhanced) --- */
+
+.login-page {
+    /* Existing flex properties */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+    padding: 40px 0;
+
+    /* Enhanced background for login page */
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), /* Semi-transparent white overlay */
+                url('image/1.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* Makes the background fixed while scrolling (if content was longer) */
+}
+
+.login-container {
+    background-color: var(--form-background-color);
+    padding: 40px;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* More prominent shadow */
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid var(--border-color); /* Subtle border */
+    position: relative; /* For potential future animations/elements */
+    overflow: hidden; /* Ensures inner elements stay within rounded corners */
+    transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+}
+
+.login-container::before { /* Decorative element for top-left corner */
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+.login-container::after { /* Decorative element for bottom-right corner */
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+
+.login-container h2 {
+    margin-bottom: 35px; /* Increased bottom margin */
+    color: var(--primary-color);
+    font-size: 2.2em; /* Slightly larger heading */
+    position: relative; /* To be above pseudo-elements */
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Increased bottom margin */
+    text-align: left;
+    position: relative; /* For label animation/effects */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px; /* Increased bottom margin */
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1em; /* Slightly larger label text */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%; /* Occupy full width of their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid var(--input-border-color); /* **FIXED BLACK BORDER ALWAYS VISIBLE** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Include padding and border in element's total size */
+    background-color: var(--form-background-color); /* Ensure solid white background */
+    color: #333; /* Ensure text entered into fields is dark and readable */
+    /* IMPORTANT: No transitions for any property, as we want fixed appearance */
+    transition: none; /* NO TRANSITIONS AT ALL for these elements */
+}
+
+.form-group textarea {
+    width: 100%; /* Make them fill their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid black; /* **IMPORTANT: Ensure this border is present** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Crucial: Includes padding and border in the element's total width/height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus effect */
+    /* If any background color was accidentally removed, ensure it's here. Usually white. */
+    background-color: #fff; /* Ensure inputs have a white background */
+}
+
+
+/*.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);  Keeps the green border on focus 
+    UPDATED: Adjusting box-shadow for a softer glow that doesn't look like a solid box underneath 
+    /* Parameters: offset-x | offset-y | blur-radius | spread-radius | color 
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15); /* Softer, more spread-out green glow 
+    outline: none; /* Crucial: Ensures default browser outline is removed 
+}*/
+
+.login-container .btn-primary {
+    width: 100%;
+    padding: 15px; /* Larger button padding */
+    font-size: 1.2em; /* Larger button text */
+    margin-top: 25px; /* Increased top margin */
+    border-radius: 8px; /* More rounded button */
+    letter-spacing: 0.5px; /* Slightly spaced out letters */
+}
+
+.forgot-password, .signup-link {
+    margin-top: 25px; /* Increased top margin */
+    font-size: 1em; /* Slightly larger text */
+    position: relative; /* To be above pseudo-elements */
+    z-index: 1;
+}
+
+.forgot-password a, .signup-link a {
+    color: var(--secondary-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover, .signup-link a:hover {
+    color: var(--primary-color); /* Change color on hover */
+    text-decoration: none; /* Remove underline, color change is enough */
+}
+
+/* --- Responsive Adjustments for Login Page --- */
+
+.login-container .form-group input[type="email"],
+.login-container .form-group input[type="password"] {
+    width: 100%; /* Occupy full width of their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid var(--input-border-color); /* **FIXED BLACK BORDER ALWAYS VISIBLE** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Include padding and border in element's total size */
+    background-color: var(--form-background-color); /* Ensure solid white background */
+    color: #333; /* Ensure text entered into fields is dark and readable */
+    /* IMPORTANT: No transitions for any property, as we want fixed appearance */
+    transition: none; /* NO TRANSITIONS AT ALL for these specific elements */
+}
+
+/* --- 3. Input Field Focus Styling: Absolutely NO visual change on focus for login inputs. --- */
+.login-container .form-group input[type="email"]:focus,
+.login-container .form-group input[type="password"]:focus {
+    border-color: var(--input-border-color); /* **STAYS BLACK on focus** */
+    box-shadow: none; /* **NO BOX SHADOW on focus** */
+    outline: none; /* Crucial: Removes default browser blue outline */
+    transform: none; /* **NO TRANSFORM/LIFT on focus** */
+}
+
+/* --- 4. Input Field Hover Styling: Absolutely NO visual change on hover for login inputs. --- */
+.login-container .form-group input[type="email"]:hover,
+.login-container .form-group input[type="password"]:hover {
+    border-color: var(--input-border-color); /* **STAYS BLACK on hover** */
+    box-shadow: none; /* **NO BOX SHADOW on hover** */
+    transform: none; /* **NO TRANSFORM/LIFT on hover** */
+}
+
+.login-section .login-container .form-group input[type="text"] {
+    border: 1px solid var(--input-border-color) !important; /* Force black border */
+    background-color: var(--form-background-color) !important; /* Force white background */
+    transition: none !important; /* No transitions */
+    box-shadow: none !important; /* No box shadow */
+    outline: none !important; /* No outline */
+    transform: none !important; /* No transform */
+}
+
+/* Also ensure its focus and hover states are explicitly handled with !important */
+.login-section .login-container .form-group input[type="text"]:focus,
+.login-section .login-container .form-group input[type="text"]:hover {
+    border-color: var(--input-border-color) !important;
+    background-color: var(--form-background-color) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transform: none !important;
+}
+
+/* --- 5. General Form Input Styling (for Contact page and other forms) --- */
+/* Ensure these also have fixed black borders and no effects */
+.form-group input[type="text"], /* Explicitly targeting text inputs */
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%; /* Occupy full width of their container */
+    padding: 12px; /* Inner spacing */
+    border: 1px solid var(--input-border-color); /* **FIXED BLACK BORDER ALWAYS VISIBLE** */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    box-sizing: border-box; /* Include padding and border in element's total size */
+    background-color: var(--form-background-color); /* Ensure solid white background */
+    color: #333; /* Ensure text entered into fields is dark and readable */
+    /* IMPORTANT: No transitions for any property, as we want fixed appearance */
+    transition: none; /* NO TRANSITIONS AT ALL for these elements */
+}
+
+/* --- 3. Input Field Focus Styling: Absolutely NO visual change on focus. --- */
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+    border-color: var(--input-border-color); /* **STAYS BLACK on focus** */
+    box-shadow: none; /* **NO BOX SHADOW on focus** */
+    outline: none; /* Crucial: Removes default browser blue outline */
+    transform: none; /* **NO TRANSFORM/LIFT on focus** */
+}
+
+/* --- 4. Input Field Hover Styling: Absolutely NO visual change on hover. --- */
+.form-group input[type="text"]:hover,
+.form-group input[type="email"]:hover,
+.form-group input[type="password"]:hover,
+.form-group textarea:hover {
+    border-color: var(--input-border-color); /* **STAYS BLACK on hover** */
+    box-shadow: none; /* **NO BOX SHADOW on hover** */
+    transform: none; /* **NO TRANSFORM/LIFT on hover** */
+}
+@media (max-width: 768px) {
+    .login-page {
+        padding: 20px 0; /* Reduce vertical padding */
+    }
+
+    .login-container {
+        margin: 0 20px; /* Add horizontal margin on smaller screens */
+        padding: 30px; /* Reduce padding inside container */
+    }
+
+    .login-container h2 {
+        font-size: 1.8em; /* Smaller heading on small screens */
+        margin-bottom: 30px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        padding: 12px; /* Adjust input padding */
+        font-size: 1em;
+    }
+
+    .login-container .btn-primary {
+        padding: 12px; /* Adjust button padding */
+        font-size: 1.1em;
+    }
+
+    .login-container::before,
+    .login-container::after {
+        display: none; /* Hide decorative elements on very small screens for simplicity */
+    }
+}
+
+/* --- Additions for Form Messages --- */
+.form-messages {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+
+.form-messages.success {
+    background-color: #e6ffe6; /* Light green */
+    color: #3c763d; /* Darker green */
+    border: 1px solid #d6e9c6;
+}
+
+.form-messages.error {
+    background-color: #ffe6e6; /* Light red */
+    color: #a94442; /* Darker red */
+    border: 1px solid #ebccd1;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%; /* Make inputs take full width of their parent container */
+    padding: 12px 15px; /* Inner spacing */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* IMPORTANT: Includes padding and border in the element's total width */
+}
+
+
+/* --- Cart Page Specific Styles --- */
+
+/* --- FINAL FIX: Specific rule for the cart icon itself --- */
+/* This targets the <i> element within the .cart-icon link.
+   Place this rule at the VERY END of your static_assets/style.css file. */
+.cart-icon .bi-cart-fill { /* Targeting the icon class directly within the cart link */
+    color: #000000 !important; /* Force black color */
+    /* No other properties needed here unless you want to override size etc. */
+}
+
+/* Ensure the parent .cart-icon also has no color transition */
+.cart-icon {
+    position: relative; /* Crucial for positioning the count bubble */
+
+    color: #000000 !important; /* Keep icon black */
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: none !important;
+}
+
+.cart-icon:hover {
+    color: #000000 !important; /* Ensure it stays black on hover */
+}
+
+/* The cart item count bubble will remain red (no change here) */
+.cart-icon #cartItemCount {
+    background-color: var(--danger-color); /* Red circle for cart count */
+    color: white;
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    line-height: 1;
+    border: 1px solid white;
+}
+
+/* ... (Rest of your style.css content, including previous .cart-icon rules.
+   This new rule is intended to override any conflicting color definitions.) ... */
+
+
+/* Overall container for the cart page content */
+.cart-page-content {
+    padding: 40px 20px;
+    min-height: 500px; /* Ensures main content pushes footer down */
+}
+
+/* Page title for the cart */
+.cart-page-content h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--primary-color); /* Assuming --primary-color is defined */
+    font-size: 2.5em;
+}
+
+
+/* --- New Cart Layout Styles (Flexbox for Main Sections) --- */
+
+.cart-section-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping the list and summary on smaller screens */
+    gap: 30px; /* Space between the cart item list and the summary card */
+    /* Padding was moved from here to .cart-page-content for overall page padding */
+    align-items: flex-start; /* Aligns content to the top within the wrapper */
+}
+
+/* Container for the list of individual cart items */
+.cart-items-list {
+    flex: 3; /* Takes more space, e.g., 60-70% width, in a flex container */
+    min-width: 300px; /* Minimum width before wrapping to next line */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Message for empty cart state */
+.empty-cart-message {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+
+/* --- Individual Cart Item Card Styling --- */
+
+.cart-item-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px dashed #e0e0e0; /* Dashed separator between items */
+    gap: 15px; /* Space between the image, details, quantity, price, and remove button */
+}
+
+.cart-item-card:last-child {
+    border-bottom: none; /* No border for the very last item in the list */
+}
+
+.cart-item-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Ensures image covers area without distortion, cropping if necessary */
+    border-radius: 4px; /* Slightly rounded corners for the image */
+}
+
+.item-details {
+    flex-grow: 1; /* Allows this section (name, price/unit) to take up available horizontal space */
+}
+
+.item-name {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: var(--dark-color); /* Uses a theme-defined dark color */
+}
+
+.item-price-per-unit {
+    margin: 0;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.item-quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; /* Hides any content that overflows the border-radius */
+    min-width: 90px; /* Ensures enough space for +/- buttons and quantity span */
+}
+
+.quantity-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #333;
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.item-quantity {
+    padding: 8px 15px;
+    min-width: 30px; /* Ensures the number doesn't get too squeezed */
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.item-total-price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color); /* Uses a theme-defined primary color */
+    min-width: 100px; /* Consistent width for displaying total price */
+    text-align: right; /* Aligns price to the right */
+}
+
+.remove-item-btn {
+    background-color: var(--danger-color, #dc3545); /* Red button, with fallback color */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    display: flex; /* Helps center the icon if present inside the button */
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-item-btn:hover {
+    background-color: var(--dark-danger-color, #c82333); /* Darker red on hover */
+}
+
+
+/* --- Cart Summary Card Styling --- */
+
+.cart-summary-card {
+    flex: 1; /* Takes remaining space in the flex container, making it about 30-40% width */
+    min-width: 280px; /* Minimum width for the summary card before wrapping */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cart-summary-card h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+    color: var(--dark-color);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between; /* Spreads text and value across the row */
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #555;
+}
+
+.summary-row .summary-value {
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.summary-divider {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.total-row {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.cart-action-buttons {
+    display: flex;
+    flex-direction: column; /* Stacks buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.full-width-btn {
+    width: 100%; /* Makes buttons take full width of their container */
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+
+/* --- Responsive Adjustments for Cart Layout (max-width: 768px) --- */
+
+@media (max-width: 768px) {
+    .cart-section-wrapper {
+        flex-direction: column; /* Stacks the cart items list and summary card vertically */
+        align-items: center; /* Centers the stacked items */
+        gap: 20px; /* Reduces gap on smaller screens */
+    }
+
+    .cart-items-list,
+    .cart-summary-card {
+        width: 100%; /* Makes them take full width of the parent */
+        max-width: 500px; /* Optional: Sets a maximum width even when full width, for readability */
+        min-width: unset; /* Removes previous min-width constraint */
+    }
+
+    .cart-item-card {
+        flex-wrap: wrap; /* Allows components within a cart item to wrap */
+        justify-content: center; /* Centers items when wrapped */
+        text-align: center;
+        padding: 15px; /* Add padding to the item card itself */
+    }
+
+    .cart-item-thumbnail {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add bottom margin */
+    }
+
+    .item-details,
+    .item-quantity-controls,
+    .item-total-price,
+    .remove-item-btn {
+        margin: 5px 0; /* Add vertical spacing between wrapped components */
+        width: 100%; /* Makes them take full width within the wrapped item */
+        justify-content: center; /* Centers content within these sections */
+    }
+
+    .item-quantity-controls {
+        /* Ensure quantity controls are centered as a group when wrapped */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+/* Product Grid Specific Styles */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Use flexbox for internal layout */
+    flex-direction: column;
+    justify-content: space-between; /* Push button to bottom */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 10px;
+    flex-grow: 1; /* Allows description to take available space */
+    text-align: center; /* Override content-section p for product card */
+}
+
+.product-card p:last-of-type { /* Price paragraph */
+    font-weight: bold;
+    color: black; /* Black for price */
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.product-card .btn-primary {
+   background-color: var(--logo-orange-button-color); /* Set to the specific yellow */
+    color: var(--button-text-color); /* Dark text */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    /* IMPORTANT: Remove all transitions for no visual change */
+    transition: none; /* NO TRANSITIONS AT ALL for this button */
+}
+.product-card .btn-primary:hover {
+    background-color: #218838;
+}
+
+.product-card .btn-primary:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+/* Product Card's Add to Cart Button */
+.product-card .add-to-cart-btn {
+    /* No specific background/color override needed here, inherited from .btn */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-card .add-to-cart-btn:hover,
+.product-card .add-to-cart-btn:active,
+.product-card .add-to-cart-btn:focus { /* Add focus for keyboard navigation consistency */
+    background-color: var(--logo-orange-button-color); /* Stays the SAME YELLOW */
+    color: var(--button-text-color); /* Stays the SAME dark text */
+    transform: none; /* No lift/transform */
+    box-shadow: none; /* No shadow */
+    outline: none; /* Remove browser default outline */
+}
+
+/* Message Styles (for productMessages div) */
+.message {
+    padding: 10px 15px;
+    margin: 0 auto 20px auto; /* Centered message, margin-bottom for spacing */
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    max-width: 600px; /* Limit width of messages */
+}
+
+.message.info {
+    background-color: #e0f7fa; /* Light blue */
+    color: #00796b;
+    border: 1px solid #00acc1;
+    opacity: 1;
+}
+
+.message.success {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+    opacity: 1;
+}
+
+.message.error {
+    background-color: #ffebee; /* Light red */
+    color: #c62828;
+    border: 1px solid #f44336;
+    opacity: 1;
+}
+
+
+/* Responsive Adjustments for Products (Add these at the end of your CSS) */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Stack products on small screens */
+        padding: 10px;
+    }
+}
+/* --- My Profile Dropdown Styles --- */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown-btn {
+    /* No specific background/color override needed here, inherited from .btn */
+    padding: 10px 15px; /* Adjust padding if different from .btn default */
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 2px 5px rgba(251, 176, 64, 0.2);
+}
+
+.profile-dropdown-btn:hover {
+    background-color: var(--logo-orange-button-color); /* STRICTLY the SAME ORANGE on hover */
+    color: var(--button-text-color); /* Ensure text color remains consistent */
+    transform: translateY(-1px);
+    /* Adjust shadow rgba for the new lighter #FBB040 */
+    box-shadow: 0 3px 8px rgba(251, 176, 64, 0.3);
+}
+.profile-dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #f9f9f9; /* Light background for dropdown */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000; /* Ensure it's above other content */
+    border-radius: 8px;
+    overflow: hidden; /* For rounded corners on child items */
+    top: calc(100% + 10px); /* Position below the button with some spacing */
+    right: 0; /* Align to the right of the button */
+    padding: 5px 0;
+}
+
+.profile-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left; /* Align text within dropdown items */
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.profile-dropdown-content a:hover {
+    background-color: #ddd; /* Light gray on hover */
+}
+
+.profile-dropdown-content.show {
+    display: block; /* Show when 'show' class is added by JS */
+}
+
+/* Optional: Add a small arrow to the dropdown button */
+.profile-dropdown-btn .bi-caret-down-fill {
+    font-size: 0.8em; /* Adjust size relative to text */
+}
+
+/* Ensure header elements align properly with new dropdown */
+.header-content .navbar-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Pushes content to the right */
+    flex-grow: 1; /* Allows it to take up available space */
+    gap: 20px; /* Space between nav and auth/cart group */
+}
+
+/* Additional spacing for the auth/cart group within navbar-group */
+.header-content .navbar-group > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between profile dropdown and cart icon */
+}
+
+/* Small adjustments for consistency if needed from previous inline styles */
+#auth-area { /* This ID will now wrap the dropdown */
+    display: flex; /* Keep as flex if needed for internal elements */
+    align-items: center;
+    gap: 1rem;
+}
+

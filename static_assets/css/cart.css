@@ -1,0 +1,255 @@
+/* Shopping Cart Page Styles - cart.css */
+
+/* Overall container for the cart page content */
+.cart-page-content { /* This is the <main> element with class="container cart-page-content" */
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    min-height: 400px; /* Ensures a minimum height even if cart is empty */
+}
+
+/* Page title for the cart */
+.cart-page-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Wrapper for cart items list and summary card */
+.cart-section-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+    gap: 30px; /* Space between the two main sections */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Container for the list of individual cart items */
+.cart-items-list { /* This targets the outer div for the list */
+    flex: 2; /* Allows this section to grow and take more space */
+    min-width: 400px; /* Minimum width before wrapping, adjust as needed */
+    background-color: #f9f9f9; /* Light grey background for the list */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05); /* Subtle inner shadow */
+}
+
+/* Message for empty cart state */
+.empty-cart-message {
+    text-align: center;
+    padding: 50px;
+    color: #777;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+/* Individual Cart Item Card Styling */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distributes space between elements */
+    padding: 15px 0;
+    border-bottom: 1px dashed #e0e0e0; /* Dashed separator */
+    gap: 15px; /* Space between columns within a cart item */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; /* Allows details to take available space */
+}
+
+.cart-item-name {
+    margin: 0; /* Reset default margin */
+    font-size: 1.2em;
+    color: var(--dark-text-color);
+}
+
+.cart-item-price {
+    margin: 0; /* Reset default margin */
+    font-size: 0.95em;
+    color: #666;
+}
+
+/* Quantity Controls for Cart Items (e.g., - 1 +) */
+.cart-item-quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* NEW: Pushes buttons to ends */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden; /* Ensures borders are clean */
+    min-width: 90px; /* Ensure enough space for buttons and quantity */
+}
+
+.cart-item-quantity-controls button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.cart-item-quantity-controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.cart-item-quantity-controls span { /* This is the quantity display */
+    padding: 8px 0; /* Adjusted padding to allow buttons to go to ends */
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-text-color);
+    flex-grow: 1; /* Allows quantity to take up available space in the middle */
+}
+
+.cart-item-total { /* Total price for a single item */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 100px; /* Ensure enough space for price */
+    text-align: right;
+}
+
+/* Remove Button */
+.remove-item-btn {
+    background-color: var(--danger-color); /* Red color for danger */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.remove-item-btn:hover {
+    background-color: var(--dark-danger-color, #c82333); /* Darker red on hover */
+}
+
+/* Cart Summary Card Styling */
+.cart-summary-card {
+    flex: 1; /* Allows this section to grow and shrink */
+    min-width: 280px; /* Minimum width before wrapping */
+    max-width: 350px; /* Maximum width for the summary card */
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 25px;
+}
+
+.cart-summary-card h3 {
+    margin-top: 0;
+    font-size: 1.8em;
+    color: var(--primary-color);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: var(--dark-text-color);
+}
+
+.summary-value {
+    font-weight: 600;
+}
+
+.summary-divider {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.total-row {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.cart-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.full-width-btn {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Responsive Adjustments for Cart Layout */
+@media (max-width: 768px) {
+    .cart-section-wrapper {
+        flex-direction: column; /* Stack vertically on small screens */
+        align-items: center;
+        gap: 20px;
+    }
+
+    .cart-items-list,
+    .cart-summary-card {
+        width: 100%; /* Take full width on small screens */
+        max-width: 500px; /* Limit max width even when full width */
+        min-width: unset; /* Remove min-width constraint on small screens */
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .cart-item-image {
+        margin-bottom: 10px;
+    }
+
+    .cart-item-details {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .cart-item-total {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .remove-item-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

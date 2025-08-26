@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Settings</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/settings.css"> <!-- New CSS for settings -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Header copied from other pages for consistency -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                                <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                                
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container settings-page-content">
+        <h1>Account Settings</h1>
+        <div id="settingsMessages" class="message" style="display:none;"></div>
+
+        <section class="settings-section">
+            <div class="settings-cards-top-row">
+                <div class="settings-card">
+                    <h2>Profile Information</h2>
+                    <form id="profileInfoForm">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <h2>Change Password</h2>
+                    <form id="changePasswordForm">
+                        <div class="form-group">
+                            <label for="oldPassword">Current Password:</label>
+                            <input type="password" id="oldPassword" name="oldPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password:</label>
+                            <input type="password" id="newPassword" name="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">Confirm New Password:</label>
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+            </div> <!-- End settings-cards-top-row -->
+
+            <div class="settings-card settings-card-full-width">
+                <h2>Shipping Address</h2>
+                <form id="shippingAddressForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressLine1">Address Line 1 (House No., Building, Street):</label>
+                        <input type="text" id="addressLine1" name="addressLine1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressLine2">Address Line 2 (Area, Locality):</label>
+                        <input type="text" id="addressLine2" name="addressLine2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressLine3">Landmark (Optional):</label>
+                        <input type="text" id="addressLine3" name="addressLine3">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip Code:</label>
+                        <input type="text" id="zipCode" name="zipCode" pattern="^\d{5,6}$" title="Zip Code must be 5 or 6 digits" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" pattern="^\d{10}$" title="Phone Number must be 10 digits" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Shipping Address</button>
+                </form>
+            </div>
+
+            <!-- NEW: Continue Shopping Button -->
+            <div class="continue-shopping-container">
+                <button id="continueShoppingBtnSettings" class="btn btn-secondary">Continue Shopping</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

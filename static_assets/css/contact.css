@@ -1,0 +1,200 @@
+/* Contact Page Styles - contact.css */
+
+/* Hero Section specific to Contact Page - EXACTLY Designed similar to Home page hero */
+.contact-hero { /* Assuming this class is used for Contact page hero */
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover; /* SAME BACKGROUND IMAGE as homepage */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    background-blend-mode: overlay; /* Blends the overlay with the image */
+    
+    min-height: 500px; /* Consistent height with homepage hero */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text within the content block */
+    
+    color: var(--white-text-color); /* Ensure hero text is white */
+    padding: 100px 20px; /* Consistent padding */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow for better contrast */
+}
+
+.contact-hero h1 {
+    font-size: 3.1rem; /* Consistent with homepage hero h1 */
+    margin-bottom: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.contact-hero p {
+    font-size: 1.3rem; /* Consistent with homepage hero p */
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Contact Details Section */
+.contact-details-section {
+    padding: 60px 0;
+    background-color: var(--form-background-color); /* White background */
+}
+
+.contact-grid {
+    display: flex; /* Use flexbox for the two-column layout */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 40px; /* Space between the form and info containers */
+    align-items: stretch; /* Makes both columns stretch to the same height */
+    justify-content: center; /* Centers the grid horizontally */
+}
+
+.contact-form-container,
+.contact-info-container {
+    background-color: var(--form-background-color); /* White background for both boxes */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    flex: 1; /* Allows both containers to grow and shrink equally */
+    min-width: 300px; /* Ensures they don't get too small before wrapping */
+    border: 1px solid var(--border-light-grey); /* Add a light grey border to the boxes */
+}
+
+.contact-form-container h2,
+.contact-info-container h2 {
+    color: var(--primary-color); /* Green heading */
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.contact-info-container h2 {
+    text-align: left; /* Align contact info heading to the left */
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Make labels take full width */
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea { /* Apply to textarea as well */
+    width: 100%; /* Make them take full width of their parent */
+    padding: 12px 15px;
+    border: 1px solid var(--border-light-grey);
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+    outline: none;
+}
+
+/* Adjust textarea specific height */
+.form-group textarea {
+    min-height: 250px; /* Increased minimum height for the message box */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Button Styling */
+.contact-form-container .btn {
+    width: 100%; /* Make the button take full width */
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Ensure it takes full width */
+    margin-top: 30px; /* Add some space above the button */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start; /* Align icon and text to the top */
+    margin-bottom: 15px;
+    color: var(--dark-text-color); /* Dark text for readability */
+    font-size: 1.1em;
+}
+
+.info-item i { /* For Font Awesome icons */
+    color: red;
+    font-size: 1.3em;
+    margin-right: 15px;
+    width: 25px; /* Fixed width for icon alignment */
+    text-align: center;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.map-container {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.map-container iframe {
+    width: 100%; /* Ensure map fills its container */
+    height: 300px; /* Fixed height for the map */
+    border: 0; /* Remove default iframe border */
+    border-radius: 8px; /* Match container border-radius */
+}
+
+.social-links-contact {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-links-contact h3 {
+    color: var(--dark-primary-color); /* Darker green */
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.social-links-contact a {
+    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-links-contact a:hover {
+    transform: translateY(-5px);
+    text-decoration: none;
+}
+
+.social-links-contact img {
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+/* Responsive Adjustments for Contact Page */
+@media (max-width: 992px) {
+    .contact-grid {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+        align-items: center; /* Center items when stacked */
+    }
+
+    .contact-form-container,
+    .contact-info-container {
+        padding: 30px;
+        width: 100%; /* Take full width when stacked */
+        max-width: 500px; /* Limit max width even when stacked */
+    }
+
+    .contact-info-container h2 {
+        text-align: center; /* Center contact info heading on small screens */
+    }
+
+    .info-item {
+        justify-content: center; /* Center info items */
+    }
+}

@@ -1,0 +1,231 @@
+/* Checkout Page Styles - checkout.css */
+
+/* Overall container for the checkout page content */
+.checkout-page-content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    min-height: 600px; /* Ensures a minimum height */
+}
+
+/* Page title for the checkout */
+.checkout-page-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Wrapper for the main sections (form and summary) */
+.checkout-section-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    gap: 30px; /* Space between the form and summary sections */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Shipping and Payment Forms Container */
+.shipping-payment-form {
+    flex: 2; /* Allows this section to take more space */
+    min-width: 320px; /* Minimum width before wrapping */
+    max-width: 600px; /* Max width for forms */
+    padding: 25px;
+    background-color: #f9f9f9; /* Light grey background */
+    border-radius: 12px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05); /* Subtle inner shadow */
+}
+
+.shipping-info-section,
+.payment-info-section {
+    margin-bottom: 30px;
+}
+
+.shipping-info-section h3,
+.payment-info-section h3,
+.order-summary-card h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.checkout-form .form-group {
+    margin-bottom: 15px;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+.checkout-form input[type="text"],
+.checkout-form input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.checkout-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1; /* Each group in a row takes equal space */
+    margin-bottom: 0; /* Remove bottom margin as gap handles spacing */
+}
+
+.next-step-btn {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+/* Order Summary Card */
+.order-summary-card {
+    flex: 1; /* Allows this section to grow and shrink */
+    min-width: 300px; /* Minimum width before wrapping */
+    max-width: 450px; /* Max width for summary */
+    background-color: var(--form-background-color); /* White background */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 25px;
+}
+
+.order-summary-items {
+    max-height: 300px; /* Limit height for scrollable items */
+    overflow-y: auto; /* Enable scrolling if too many items */
+    margin-bottom: 20px;
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.order-item-name {
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+.order-item-quantity-price {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.order-item-total-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.summary-divider {
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: var(--dark-text-color);
+}
+
+.summary-value {
+    font-weight: 600;
+}
+
+.total-row {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.full-width-btn {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .checkout-section-wrapper {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        align-items: center;
+    }
+
+    .shipping-payment-form,
+    .order-summary-card {
+        max-width: 100%; /* Take full width */
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .checkout-page-content {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .checkout-page-content h2 {
+        font-size: 2rem;
+    }
+
+    .shipping-info-section h3,
+    .payment-info-section h3,
+    .order-summary-card h3 {
+        font-size: 1.5em;
+    }
+
+    .form-row {
+        flex-direction: column; /* Stack form fields in rows */
+        gap: 0; /* Remove gap when stacked */
+    }
+
+    .form-row .form-group {
+        margin-bottom: 15px; /* Add back margin for stacked fields */
+    }
+}

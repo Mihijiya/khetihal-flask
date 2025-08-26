@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khetihal - Payment</title>
+  <link rel="stylesheet" href="/static_assets/css/global.css">
+  <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+  <link rel="stylesheet" href="/static_assets/css/payment.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+<header>
+  <div class="container header-content">
+    <div class="logo">
+      <a href="/">
+        <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+      </a>
+    </div>
+    <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+      <nav class="navbar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Our Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+        {% if is_logged_in %}
+        <div class="profile-dropdown">
+          <button class="profile-dropdown-btn" id="profileDropdownBtn">
+            My Profile <i class="bi bi-caret-down-fill"></i>
+          </button>
+          <div class="profile-dropdown-content" id="profileDropdownContent">
+            <a href="order_history.html">My Orders</a>
+            <a href="profile.html">Manage Profile</a>
+            <a href="#" id="logout-link-dropdown">Logout</a>
+          </div>
+        </div>
+        {% else %}
+        <a href="login.html" class="btn btn-login" id="login-button">Login</a>
+        {% endif %}
+      </div>
+      <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="payment-page-content container">
+    <h2>Complete Your Payment</h2>
+    <div id="paymentMessages" class="message" style="display:none;"></div>
+
+    <div class="payment-section-wrapper">
+      <!-- Payment Section -->
+      <section class="payment-form-card">
+        <h3>Select Payment Method</h3>
+        <div class="payment-method-selection">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="card" checked>
+            <i class="bi bi-credit-card-fill"></i> Credit/Debit Card
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="upi">
+            <i class="bi bi-qr-code"></i> UPI
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="cod">
+            <i class="bi bi-cash-coin"></i> Cash on Delivery
+          </label>
+        </div>
+
+        <!-- Card Payment Section -->
+        <div id="cardPaymentSection" class="payment-method-content">
+          <form id="cardPaymentForm" class="payment-form">
+            <div class="form-group">
+              <label for="cardName">Name on Card:</label>
+              <input type="text" id="cardName" name="cardName" required>
+            </div>
+            <div class="form-group">
+              <label for="cardNumber">Card Number:</label>
+              <input type="text" id="cardNumber" name="cardNumber" maxlength="16" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date (MM/YY):</label>
+                <input type="text" id="expiryDate" name="expiryDate" maxlength="5" required>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" maxlength="4" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary next-step-btn">Confirm Card Details</button>
+          </form>
+        </div>
+
+        <!-- OTP Verification -->
+        <div id="otpVerificationSection" class="otp-section" style="display: none;">
+          <div id="otpMessage" class="message" style="display:none;"></div>
+          <div class="form-group">
+            <label for="otpInput">Enter OTP</label>
+            <input type="text" id="otpInput" name="otp" required pattern="[0-9]{6}">
+          </div>
+          <button type="button" id="verifyOtpBtn" class="btn btn-primary full-width-btn">Verify OTP & Pay</button>
+          <p class="resend-otp-text">Didn't receive OTP? <a href="#" id="resendOtpLink">Resend OTP</a></p>
+        </div>
+
+        <!-- UPI Payment -->
+        <div id="upiPaymentSection" class="payment-method-content" style="display:none;">
+          <form id="upiPaymentForm" class="payment-form">
+            <div class="upi-qr-code">
+              <img id="upiQrCodeImage" src="https://placehold.co/150x150/222222/FFFFFF?text=Scan+QR" alt="UPI QR Code">
+              <p>Scan this QR code with any UPI app to pay <span id="upiAmount">₹0.00</span>.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Cash on Delivery -->
+        <div id="codPaymentSection" class="payment-method-content" style="display:none;">
+          <form id="codPaymentForm" class="payment-form">
+            <div class="cod-info">
+              <p>You will pay ₹<span id="codAmount">0.00</span> in cash upon delivery.</p>
+              <p>Please have the exact amount ready.</p>
+            </div>
+            <!--button type="submit" class="btn btn-primary next-step-btn">Place Order</button-->
+          </form>
+        </div>
+      </section>
+
+      <!-- Order Summary Section -->
+      <div class="order-summary-card">
+        <h3>Your Order Summary</h3>
+        <div id="orderSummaryItems" class="order-summary-items"></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="orderSubtotal" class="summary-value">₹0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping:</span>
+          <span id="orderShipping" class="summary-value">Free</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span>Total:</span>
+          <span id="orderTotal" class="summary-value">₹0.00</span>
+        </div>
+        <button id="placeOrderBtn" class="btn btn-primary full-width-btn" style="display:none;">Place Order</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Khetihal. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="/static_assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Login</title>
+   <link rel="stylesheet" href="/static_assets/css/global.css">
+<link rel="stylesheet" href="/static_assets/css/header_footer.css">
+<link rel="stylesheet" href="/static_assets/css/auth.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+               <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                    </a>
+                </div>
+                <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                    <nav class="navbar">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="products.html">Our Products</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                        {% if is_logged_in %}
+                            <div class="profile-dropdown">
+                                <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                    My Profile <i class="bi bi-caret-down-fill"></i>
+                                </button>
+                                <div class="profile-dropdown-content" id="profileDropdownContent">
+                                 <a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a>
+                              
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                    <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+                </div>
+            </div>
+        </header>
+    <main class="login-page">
+        <section class="login-section">
+            <div class="container login-container">
+                <h2>Login to Your Account</h2>
+                <!-- Message container with correct ID and styling -->
+                <div id="formMessages" class="form-messages" style="display:none;"></div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required> <!-- Ensure name="email" -->
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required> <!-- Ensure name="password" -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="signup-link">Don't have an account? <a href="register.html">Sign Up</a></p>
+                <p class="forgot-password-link"><a href="forgot_password.html">Forgot Password?</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

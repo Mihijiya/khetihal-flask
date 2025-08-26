@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Checkout - Shipping</title> <!-- Updated title -->
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="/static_assets/css/checkout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Header copied from other pages for consistency -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                               
+                                 <a href="order_history.html">My Orders</a>
+                                 <a href="profile.html">Manage Profile</a>
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="login-dropdown-container">
+                            <button class="btn btn-login" id="headerLoginBtn">Login</button>
+                            <div class="login-dropdown-content" id="loginDropdownContent">
+                                <a href="login.html">Login as Customer</a>
+                                <a href="/admin/login.html">Login as Admin</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container checkout-page-content">
+        <h2>Checkout - Shipping Information</h2> <!-- Updated heading -->
+        <div id="checkoutMessages" class="message" style="display:none;"></div> <!-- Message display area for checkout -->
+
+        <div class="checkout-section-wrapper">
+            <!-- Shipping Information Form -->
+            <!-- ADDED id="shippingFormContainer" HERE -->
+            <div class="shipping-payment-form" id="shippingFormContainer">
+                <section class="shipping-info-section">
+                    <h3>Shipping Information</h3>
+                    <form id="shippingForm" class="checkout-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine1">Address Line 1 (House/Flat, Building/Street/Lane)</label>
+                            <input type="text" id="addressLine1" name="addressLine1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine2">Address Line 2 (Area/Locality)</label>
+                            <input type="text" id="addressLine2" name="addressLine2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine3">Landmark (Optional)</label>
+                            <input type="text" id="addressLine3" name="addressLine3">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" id="zipCode" name="zipCode" required pattern="[0-9]{5,6}" title="Please enter a valid 5 or 6 digit zip code">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" title="Please enter a 10 digit phone number">
+                        </div>
+                        <button type="submit" class="btn btn-primary next-step-btn">Save Shipping & Proceed to Payment</button> <!-- Updated button text -->
+                    </form>
+                </section>
+
+               
+            </div>
+
+           
+            <div class="order-summary-card">
+                <h3>Your Order Summary</h3> <!-- Updated heading for consistency -->
+                <div id="orderSummaryItems" class="order-summary-items">
+                    <!-- Order items will be dynamically loaded here by JavaScript -->
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="orderSubtotal" class="summary-value">₹0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="orderShipping" class="summary-value">Free</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row total-row">
+                    <span>Total:</span>
+                    <span id="orderTotal" class="summary-value">₹0.00</span>
+                </div>
+                <!-- No Place Order button on this page anymore -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+/* Products Page Styles - products.css */
+
+/* Hero Section specific to Products Page - Designed similar to Home page hero */
+.products-hero {
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover; /* SAME BACKGROUND IMAGE as homepage */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    background-blend-mode: overlay; /* Blends the overlay with the image */
+    
+    min-height: 500px; /* Consistent height with homepage hero */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text within the content block */
+    
+    color: var(--white-text-color); /* Ensure hero text is white */
+    padding: 100px 20px; /* Consistent padding */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow for better contrast */
+}
+
+.products-hero h1 {
+    font-size: 3.1rem; /* Consistent with homepage hero h1 */
+    margin-bottom: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.products-hero p {
+    font-size: 1.3rem; /* Consistent with homepage hero p */
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Product Listing Section (similar to Features Section on Homepage) */
+.product-listing-section {
+    padding: 60px 0;
+    background-color: var(--form-background-color); /* White background */
+    text-align: center;
+}
+
+.product-listing-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    color: var(--primary-color); /* Green heading */
+}
+
+.product-listing-section .section-description {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--dark-text-color); /* Dark text */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #f9f9f9; /* Slightly off-white background */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button/controls to bottom */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.5em;
+    color: var(--dark-primary-color); /* Darker green for product names */
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: var(--dark-text-for-light-bg); /* Darker text for readability */
+    margin-bottom: 10px;
+    flex-grow: 1; /* Allows paragraph to take available space */
+    text-align: center;
+}
+
+.product-card .product-price { /* Specific style for price */
+    font-weight: bold;
+    color: black; /* Black for price */
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+/* Add to Cart Button (specific styling for this button) */
+.product-card .add-to-cart-btn {
+    background-color: var(--logo-orange-button-color); /* Yellow */
+    color: var(--button-text-color); /* Dark text */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: none !important; /* No transitions */
+}
+
+.product-card .add-to-cart-btn:hover,
+.product-card .add-to-cart-btn:active,
+.product-card .add-to-cart-btn:focus {
+    background-color: var(--logo-orange-button-color) !important; /* Stays yellow */
+    color: var(--button-text-color) !important; /* Stays dark text */
+    transform: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* NEW: Quantity Controls on Product Card */
+.quantity-controls-product-card {
+    display: flex; /* Flexbox for horizontal layout of controls */
+    justify-content: space-between; /* Pushes items to the ends */
+    align-items: center;
+    gap: 5px; /* Space between buttons and quantity display */
+    width: 100%;
+    margin-top: 10px; /* Space above the controls */
+    padding: 5px; /* Add some padding around the controls */
+    border: 1px solid var(--border-light-grey);
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Light background for the control container */
+}
+
+.quantity-btn-product-card {
+    background-color: var(--primary-color); /* Green buttons */
+    color: var(--white-text-color);
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    min-width: 30px; /* Ensure buttons are not too small */
+    transition: background-color 0.2s ease;
+}
+
+.quantity-btn-product-card:hover {
+    background-color: var(--dark-primary-color); /* Darker green on hover */
+}
+
+.product-quantity-display {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--dark-text-color);
+    /* No padding here, as space-between handles distribution */
+    min-width: 30px; /* Ensure space for numbers */
+    text-align: center;
+    flex-grow: 1; /* Allows quantity to take up available space in the middle */
+}
+
+
+/* Responsive Adjustments for Products Page */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .products-hero h1 {
+        font-size: 2.5rem;
+    }
+    .products-hero p {
+        font-size: 1.1rem;
+    }
+    .product-listing-section h2 {
+        font-size: 2em;
+    }
+}

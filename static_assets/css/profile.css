@@ -1,0 +1,122 @@
+/* Profile Page Styles - profile.css */
+
+/* Profile Hero Section - mimics homepage hero */
+.profile-hero {
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover; /* SAME BACKGROUND IMAGE as homepage */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+    background-blend-mode: overlay; /* Blends the overlay with the image */
+    
+    min-height: 500px; /* Consistent height with homepage hero */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text within the content block */
+    
+    color: var(--white-text-color); /* Ensure hero text is white */
+    padding: 100px 20px; /* Consistent padding */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow for better contrast */
+}
+
+.profile-hero .hero-content { /* Ensure hero-content takes up space */
+    max-width: 800px; /* Limit width for readability */
+    z-index: 1;
+}
+
+.profile-hero h1 {
+    font-size: 3.1rem; /* Consistent with homepage hero h1 */
+    margin-bottom: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.profile-hero p {
+    font-size: 1.3rem; /* Consistent with homepage hero p */
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Specific rule to remove shadow from the button in the profile hero section */
+.profile-hero .btn-primary {
+    box-shadow: none !important; /* Force no shadow on this specific button */
+}
+.profile-hero .btn-primary:hover {
+    box-shadow: none !important; /* Force no shadow on hover too */
+}
+
+
+/* Profile Features Section - mimics homepage features section */
+.profile-features-section {
+    padding: 60px 0;
+    background-color: var(--form-background-color); /* Using form-background-color (white) */
+    text-align: center; /* Center all text within this section */
+}
+
+.profile-overview-heading { /* Specific heading for "Your Account at a Glance" */
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--primary-color); /* Green heading */
+}
+
+.profile-feature-grid {
+    display: flex; /* Changed to flex */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 30px; /* Space between stacked items */
+    max-width: 900px; /* Increased max-width for the grid container */
+    margin: 0 auto; /* Center the grid container itself */
+}
+
+.profile-feature-item {
+    background-color: var(--form-background-color); /* White background for items */
+    padding: 40px; /* Increased padding for larger box feel */
+    border-radius: 8px;
+    /* Updated box-shadow for a more prominent effect */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Stronger, more diffused shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for shadow */
+    width: 100%; /* Make each item take full width of its parent (.feature-grid) */
+    max-width: 700px; /* Increased individual item max-width significantly */
+    box-sizing: border-box; /* Include padding in width */
+    display: flex; /* Use flex for content inside item to align button */
+    flex-direction: column; /* Stack content inside item */
+    justify-content: space-between; /* Push button to bottom if content varies */
+    align-items: center; /* Center content inside the box */
+    text-align: center; /* Center text within the feature item */
+}
+
+.profile-feature-item:hover {
+   transform: translateY(-5px);
+    /* Enhanced shadow on hover */
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25); /* Even stronger shadow on hover */}
+
+.profile-feature-item h3 {
+    color: black;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.profile-feature-item p {
+    color: var(--dark-text-for-light-bg); /* Darker text for readability */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px; /* Space above the button */
+    flex-grow: 1; /* Allow paragraph to take available space */
+}
+
+/* Responsive Adjustments for Profile Page */
+@media (max-width: 992px) {
+    .profile-feature-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-hero h1 {
+        font-size: 2.5rem;
+    }
+    .profile-hero p {
+        font-size: 1.1rem;
+    }
+    .profile-overview-heading {
+        font-size: 2em;
+    }
+}

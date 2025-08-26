@@ -1,0 +1,178 @@
+/* Homepage Styles - home.css */
+
+/* Hero Section */
+.hero-section {
+    background: url('/static_assets/image/1.jpg') no-repeat center center/cover;
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    background-blend-mode: overlay;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 3.1rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--white-text-color); /* White text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    color: var(--white-text-color); /* White text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+}
+
+/* Features Section */
+.features-section {
+    padding: 60px 0;
+    background-color: var(--form-background-color); /* Using form-background-color (white) */
+    text-align: center;
+}
+
+.features-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.feature-grid {
+    display: flex; /* Changed to flex */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 30px; /* Space between stacked items */
+    max-width: 900px; /* Increased max-width for the grid container */
+    margin: 0 auto; /* Center the grid container itself */
+}
+
+.feature-item {
+    background-color: var(--form-background-color); /* White background for items */
+    padding: 40px; /* Increased padding for larger box feel */
+    border-radius: 8px;
+    /* Updated box-shadow for a more prominent effect */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Stronger, more diffused shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for shadow */
+    width: 100%; /* Make each item take full width of its parent (.feature-grid) */
+    max-width: 700px; /* Increased individual item max-width significantly */
+    box-sizing: border-box; /* Include padding in width */
+    display: flex; /* Use flex for content inside item to align button */
+    flex-direction: column; /* Stack content inside item */
+    justify-content: space-between; /* Push button to bottom if content varies */
+    align-items: center; /* Center content inside the box */
+    text-align: center; /* Center text within the feature item */
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    /* Enhanced shadow on hover */
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25); /* Even stronger shadow on hover */
+}
+
+.feature-item h3 {
+    color: black; /* Darker green for headings */
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.feature-item p {
+    color: var(--dark-text-for-light-bg); /* Darker text for readability */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Space before the new button */
+    flex-grow: 1; /* Allow paragraphs to take available space */
+}
+
+/* Button styling within feature items */
+.feature-item .btn {
+    margin-top: auto; /* Push button to the bottom if feature-item is flex column */
+    padding: 12px 25px; /* Slightly larger padding for buttons */
+    font-size: 1em; /* Adjusted font size for buttons */
+    border-radius: 8px; /* More rounded corners for consistency */
+    text-decoration: none;
+    display: inline-block; /* Ensure button styling */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* The color will be inherited from .btn-primary in global.css */
+}
+
+/* Call to Action Section 
+.call-to-action {
+    background-color: var(--accent-color); 
+    color: var(--white-text-color);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.call-to-action h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.call-to-action p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.call-to-action .btn-secondary {
+    background-color: var(--white-text-color);
+    color: var(--accent-color);
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: inline-block; }
+
+.call-to-action .btn-secondary:hover {
+    background-color: #e0e0e0; 
+    transform: translateY(-2px);
+}*/
+
+/* Responsive Adjustments for Home Page */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .feature-item {
+        max-width: 90%; /* Adjust max-width for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .features-section h2 {
+        font-size: 2em;
+    }
+
+    .feature-item {
+        padding: 25px; /* Slightly less padding on very small screens */
+        max-width: 100%; /* Allow full width on smallest screens */
+    }
+}

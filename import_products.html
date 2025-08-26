@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khetihal - Import Products</title>
+    <link rel="stylesheet" href="/static_assets/css/global.css">
+    <link rel="stylesheet" href="/static_assets/css/header_footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Basic styling for the import page */
+        .import-page-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--form-background-color);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+            text-align: center; /* Center content */
+        }
+
+        .import-page-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .import-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .import-form input[type="file"] {
+            border: 1px solid var(--border-light-grey);
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            background-color: #f8f8f8;
+        }
+
+        .import-form button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: var(--logo-orange-button-color);
+            color: var(--button-text-color);
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .import-form button:hover {
+            background-color: var(--logo-orange-button-color-hover);
+            transform: translateY(-2px);
+        }
+
+        .import-form button:active {
+            transform: translateY(0);
+        }
+
+        .import-instructions {
+            margin-top: 20px;
+            text-align: left;
+            padding: 0 20px;
+            color: var(--dark-text-color);
+        }
+
+        .import-instructions ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .import-instructions li {
+            margin-bottom: 5px;
+        }
+
+        /* Specific messages for import */
+        #importMessages {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        #importErrors {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+            border-radius: 8px;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+
+        #importErrors ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+   
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static_assets/image/2.jpg" alt="KhetiHal Logo" style="height: 100px; width: auto;">
+                </a>
+            </div>
+            <div class="navbar-group" style="display: flex; align-items: center; justify-content: flex-end; flex-grow: 1; gap: 20px;">
+                <nav class="navbar">
+                    <ul>
+                        <!--li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Our Products</a></li>
+                        <li><a href="contact.html">Contact</a></li-->
+                         <li><a href="/admin/dashboard.html">Admin Dashboard</a></li> <!-- Direct link for admins -->
+                    </ul>
+                    
+                </nav>
+                <div class="flex items-center space-x-4" style="display: flex; align-items: center; gap: 1rem;">
+                    {% if is_logged_in %}
+                        <div class="profile-dropdown">
+                            <button class="profile-dropdown-btn" id="profileDropdownBtn">
+                                My Profile <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <div class="profile-dropdown-content" id="profileDropdownContent">
+                                <!--a href="order_history.html">My Orders</a>
+                                <a href="profile.html">Manage Profile</a-->
+                                {% if is_admin %}
+                              
+                                {% endif %}
+                                <a href="#" id="logout-link-dropdown">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="login.html" class="btn btn-login" id="login-button">Login</a>
+                    {% endif %}
+                </div>
+                <!--a href="cart.html" class="cart-icon"><i class="bi bi-cart-fill"></i> <span id="cartItemCount">0</span></a-->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="import-page-content container">
+            <h2>Import Products from CSV</h2>
+            <div id="importMessages" class="message"></div>
+            <div id="importErrors" class="message error" style="display:none;"></div>
+
+            <form id="csvImportForm" class="import-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="csvFile" class="sr-only">Upload CSV File</label>
+                    <input type="file" id="csvFile" name="file" accept=".csv" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload & Import</button>
+            </form>
+
+            <div class="import-instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li>Your CSV file must contain the following columns (case-sensitive): <code>name</code>, <code>description</code>, <code>price</code>, <code>image_url</code>, <code>stock</code>.</li>
+                    <li><code>name</code>, <code>price</code>, and <code>stock</code> are mandatory for each product.</li>
+                    <li><code>price</code> should be a number (e.g., 2.50).</li>
+                    <li><code>stock</code> should be a whole number (e.g., 100).</li>
+                    <li>If a product with the same <code>name</code> already exists, its <code>description</code>, <code>price</code>, <code>image_url</code>, and <code>stock</code> will be updated. Otherwise, a new product will be created.</li>
+                    <li><code>image_url</code> should be a path to the image (e.g., `/static_assets/image/product1.jpg`).</li>
+                </ul>
+                <p>Example CSV format:</p>
+                <pre><code>name,description,price,image_url,stock
+Organic Carrots,Fresh organic carrots,1.75,/static_assets/image/carrots.jpg,200
+Blueberries,Sweet seedless blueberries,4.00,/static_assets/image/blueberries.jpg,80
+</code></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khetihal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static_assets/script.js"></script>
+</body>
+</html>
